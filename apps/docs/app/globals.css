@@ -4,11 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-body: "Avenir Next", "Manrope", "Segoe UI", sans-serif;
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -16,7 +11,12 @@ html {
 body {
   background:
     radial-gradient(circle at top, rgba(180, 25, 2, 0.06), transparent 28%),
-    linear-gradient(180deg, #fff7f4 0%, var(--background) 22%, var(--background) 100%);
+    linear-gradient(
+      180deg,
+      #fff7f4 0%,
+      var(--background) 22%,
+      var(--background) 100%
+    );
   color: var(--foreground);
 }
 

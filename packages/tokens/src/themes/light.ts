@@ -1,7 +1,13 @@
 import { colorTokens } from '../colors';
+import { motionTokens } from '../motion';
+import { spacingTokens } from '../spacing';
+import { typographyTokens } from '../typography';
 
 export const lightTheme = {
   name: 'light',
+  typography: typographyTokens,
+  spacing: spacingTokens,
+  motion: motionTokens,
   radius: {
     sm: '0.5rem',
     md: '0.75rem',
