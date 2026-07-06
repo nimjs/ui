@@ -2,7 +2,39 @@
   "name": "input",
   "files": ["input.tsx"],
   "dependencies": ["utils", "tokens"],
-  "tokens": ["background", "foreground", "input", "muted-foreground", "radius", "ring"],
+  "tokens": [
+    "background",
+    "foreground",
+    "input",
+    "muted-foreground",
+    "radius",
+    "ring"
+  ],
   "category": "forms",
-  "description": "Form field primitive with semantic focus styles"
+  "status": "stable",
+  "since": "0.0.0",
+  "description": "Form field primitive with semantic focus styles",
+  "anatomy": [
+    {
+      "name": "root",
+      "description": "Native input element that owns value, disabled, placeholder, and focus-visible states."
+    }
+  ],
+  "accessibility": [
+    "contrast-aware",
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "single-line field",
+      "description": "Use for short text, email, search, and numeric values that fit on one line."
+    },
+    {
+      "name": "composed form control",
+      "description": "Pair with an explicit label, description, and error message in consuming form code."
+    }
+  ]
 }

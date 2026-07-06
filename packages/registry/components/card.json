@@ -2,7 +2,45 @@
   "name": "card",
   "files": ["card.tsx"],
   "dependencies": ["utils", "tokens"],
-  "tokens": ["background", "card", "card-foreground", "border", "muted-foreground", "radius"],
+  "tokens": [
+    "background",
+    "card",
+    "card-foreground",
+    "border",
+    "muted-foreground",
+    "radius"
+  ],
   "category": "ui",
-  "description": "Composable surface container for grouped content"
+  "status": "stable",
+  "since": "0.0.0",
+  "description": "Composable surface container for grouped content",
+  "anatomy": [
+    {
+      "name": "root",
+      "description": "Surface container that owns border, background, foreground, and radius styles."
+    },
+    {
+      "name": "header",
+      "description": "Optional heading region for title and description content."
+    },
+    {
+      "name": "content",
+      "description": "Primary body region for grouped content."
+    },
+    {
+      "name": "footer",
+      "description": "Optional action or metadata region."
+    }
+  ],
+  "accessibility": ["contrast-aware", "screen-reader-readable"],
+  "usage": [
+    {
+      "name": "grouped surface",
+      "description": "Use for bounded content where title, body, and actions need a shared visual container."
+    },
+    {
+      "name": "composition primitive",
+      "description": "Keep domain behavior outside the card and compose it in application code."
+    }
+  ]
 }

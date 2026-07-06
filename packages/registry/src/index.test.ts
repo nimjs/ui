@@ -10,6 +10,13 @@ describe('registry', () => {
   it('loads all baseline component manifests', () => {
     expect(listRegistryComponents()).toHaveLength(4);
     expect(getRegistryComponent('button').dependencies).toContain('tokens');
+    expect(getRegistryComponent('button').accessibility).toContain(
+      'keyboard-accessible',
+    );
+    expect(
+      getRegistryComponent('card').anatomy.map((item) => item.name),
+    ).toContain('content');
     expect(registryComponentsByName.input.tokens).toContain('input');
+    expect(registryComponentsByName.input.status).toBe('stable');
   });
 });

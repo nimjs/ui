@@ -2,7 +2,39 @@
   "name": "badge",
   "files": ["badge.tsx"],
   "dependencies": ["utils", "tokens"],
-  "tokens": ["primary", "primary-foreground", "secondary", "secondary-foreground", "accent", "accent-foreground", "border", "ring"],
+  "tokens": [
+    "primary",
+    "primary-foreground",
+    "secondary",
+    "secondary-foreground",
+    "accent",
+    "accent-foreground",
+    "border",
+    "ring"
+  ],
   "category": "ui",
-  "description": "Compact status and metadata label"
+  "status": "stable",
+  "since": "0.0.0",
+  "description": "Compact status and metadata label",
+  "anatomy": [
+    {
+      "name": "root",
+      "description": "Inline status element that owns tone, border, and compact spacing."
+    },
+    {
+      "name": "content",
+      "description": "Short text label or compact inline metadata."
+    }
+  ],
+  "accessibility": ["contrast-aware", "screen-reader-readable"],
+  "usage": [
+    {
+      "name": "status label",
+      "description": "Use for short states such as stable, preview, beta, or deprecated."
+    },
+    {
+      "name": "metadata",
+      "description": "Use for compact categorical labels that support scanning."
+    }
+  ]
 }

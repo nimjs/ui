@@ -2,7 +2,43 @@
   "name": "button",
   "files": ["button.tsx"],
   "dependencies": ["utils", "tokens"],
-  "tokens": ["primary", "primary-foreground", "radius", "ring", "secondary", "border"],
+  "tokens": [
+    "primary",
+    "primary-foreground",
+    "radius",
+    "ring",
+    "secondary",
+    "border"
+  ],
   "category": "ui",
-  "description": "Primary action trigger"
+  "status": "stable",
+  "since": "0.0.0",
+  "description": "Primary action trigger",
+  "anatomy": [
+    {
+      "name": "root",
+      "description": "Native button element that owns intent, size, disabled, and focus-visible states."
+    },
+    {
+      "name": "content",
+      "description": "Inline label or icon content rendered by the consumer."
+    }
+  ],
+  "accessibility": [
+    "contrast-aware",
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "primary action",
+      "description": "Use one primary button for the dominant action in a local workflow."
+    },
+    {
+      "name": "secondary action",
+      "description": "Use secondary, outline, or ghost variants for supporting actions."
+    }
+  ]
 }
