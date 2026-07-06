@@ -6,6 +6,7 @@ export const navigationGroups = [
       { title: 'Introduction', href: '/docs/introduction' },
       { title: 'Installation', href: '/docs/installation' },
       { title: 'Theming', href: '/docs/theming' },
+      { title: 'Design System', href: '/docs/design-system' },
     ],
   },
   {

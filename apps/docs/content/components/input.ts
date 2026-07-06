@@ -4,8 +4,6 @@ export const meta = defineComponentMeta({
   title: 'Input',
   description:
     'Inputs stay lightweight and accessible while inheriting semantic focus, border, and placeholder behavior from the theme layer.',
-  tokens: ['background', 'foreground', 'input', 'muted-foreground', 'radius', 'ring'],
-  dependencies: ['utils', 'tokens'],
   registry: 'input',
 });
 

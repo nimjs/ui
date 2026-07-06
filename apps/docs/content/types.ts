@@ -2,8 +2,6 @@ import {
   getRegistryComponent,
   type RegistryComponentManifest,
   type RegistryComponentName,
-  type RegistryDependency,
-  type RegistryTokenReference,
 } from '@nim-ui/registry';
 
 export interface CodeBlockContent {
@@ -37,8 +35,6 @@ export interface ComponentPage extends DocPage {
 export interface ComponentDocMeta {
   title: string;
   description: string;
-  tokens: RegistryTokenReference[];
-  dependencies: RegistryDependency[];
   registry: RegistryComponentName;
 }
 
@@ -51,19 +47,7 @@ export interface ComponentPageContent {
 }
 
 export function defineComponentMeta(meta: ComponentDocMeta) {
-  const manifest = getRegistryComponent(meta.registry);
-
-  if (meta.dependencies.join('|') !== manifest.dependencies.join('|')) {
-    throw new Error(
-      `Component doc meta for "${meta.registry}" must mirror registry dependencies.`,
-    );
-  }
-
-  if (meta.tokens.join('|') !== manifest.tokens.join('|')) {
-    throw new Error(
-      `Component doc meta for "${meta.registry}" must mirror registry tokens.`,
-    );
-  }
+  getRegistryComponent(meta.registry);
 
   return meta;
 }

@@ -10,7 +10,7 @@ export const themingPage: DocPage = {
     {
       title: 'Token layers',
       paragraphs: [
-        'Primitive colors live in the tokens package under brand, accent, neutral, and semantic groups. Applications consume semantic variables such as background, card, and primary instead of raw brand values.',
+        'Primitive tokens live in the tokens package across color, typography, spacing, radius, and motion groups. Applications consume semantic variables such as background, card, and primary instead of raw brand values.',
         'The pipeline in this repository is explicit: registry metadata points to semantic tokens, the tokens package maps them to CSS variables, the UI package consumes those variables, and the docs app demonstrates the same system without a separate theme fork.',
       ],
       codeBlocks: [
@@ -18,6 +18,20 @@ export const themingPage: DocPage = {
           label: 'Semantic variables',
           language: 'css',
           code: `--background\n--foreground\n--card\n--card-foreground\n--muted\n--muted-foreground\n--border\n--input\n--primary\n--primary-foreground\n--secondary\n--secondary-foreground\n--accent\n--accent-foreground\n--ring\n--destructive\n--destructive-foreground`,
+        },
+      ],
+    },
+    {
+      title: 'Foundation scales',
+      paragraphs: [
+        'The theme exports reusable typography, spacing, and motion scales so component work does not invent one-off values as the library grows.',
+        'Those scales are also exposed as CSS variables, which lets Tailwind configuration, package CSS, and consumer apps reference the same contract.',
+      ],
+      codeBlocks: [
+        {
+          label: 'Foundation variables',
+          language: 'css',
+          code: `--font-body\n--font-display\n--font-mono\n--space-1\n--space-2\n--space-3\n--duration-fast\n--ease-standard`,
         },
       ],
     },

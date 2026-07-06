@@ -4,8 +4,6 @@ export const meta = defineComponentMeta({
   title: 'Card',
   description:
     'Card primitives help structure panels, settings surfaces, and summary blocks without introducing behavior-specific abstractions.',
-  tokens: ['background', 'card', 'card-foreground', 'border', 'muted-foreground', 'radius'],
-  dependencies: ['utils', 'tokens'],
   registry: 'card',
 });
 

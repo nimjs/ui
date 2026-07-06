@@ -4,8 +4,6 @@ export const meta = defineComponentMeta({
   title: 'Button',
   description:
     'Buttons provide semantic variants and size options with accessible focus styles and SSR-safe rendering.',
-  tokens: ['primary', 'primary-foreground', 'radius', 'ring', 'secondary', 'border'],
-  dependencies: ['utils', 'tokens'],
   registry: 'button',
 });
 

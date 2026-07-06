@@ -4,8 +4,6 @@ export const meta = defineComponentMeta({
   title: 'Badge',
   description:
     'Badges provide compact labels for status, categorization, and lightweight emphasis.',
-  tokens: ['primary', 'primary-foreground', 'secondary', 'secondary-foreground', 'accent', 'accent-foreground', 'border', 'ring'],
-  dependencies: ['utils', 'tokens'],
   registry: 'badge',
 });
 
