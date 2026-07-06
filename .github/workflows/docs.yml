@@ -44,4 +44,4 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build docs and dependencies
-        run: pnpm turbo run build --filter=@nim-ui/docs
+        run: pnpm turbo run build --filter=@nimjs/docs

@@ -29,12 +29,12 @@ export const installationPage: DocPage = {
         {
           label: 'Root styles',
           language: 'css',
-          code: `@import '@nim-ui/tokens/styles.css';`,
+          code: `@import '@nimjs/tokens/styles.css';`,
         },
         {
           label: 'Component usage',
           language: 'tsx',
-          code: `import { Button } from '@nim-ui/ui';\n\nexport function HeroActions() {\n  return <Button>Start building</Button>;\n}`,
+          code: `import { Button } from '@nimjs/ui';\n\nexport function HeroActions() {\n  return <Button>Start building</Button>;\n}`,
         },
       ],
     },

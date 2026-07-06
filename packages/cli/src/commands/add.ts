@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type { RegistryComponentName } from '@nim-ui/registry';
+import type { RegistryComponentName } from '@nimjs/registry';
 
 import { resolveConfig } from '../config/resolve-config';
 import { error, log } from '../lib/output';
@@ -30,7 +30,7 @@ function renderTemplate(templatePath: string) {
 
 export async function runAdd(cwd: string, componentName?: string) {
   if (!componentName) {
-    error('Missing component name. Example: nim-ui add button');
+    error('Missing component name. Example: ui add button');
     process.exitCode = 1;
     return;
   }
@@ -93,13 +93,13 @@ export async function runAdd(cwd: string, componentName?: string) {
 
   if (!config.configPath) {
     log(
-      'No nim-ui.config.ts found. Using default output directory "src/components/ui".',
+      'No ui.config.ts found. Using default output directory "src/components/ui".',
     );
   }
 
   if (!config.tokens && manifest.dependencies.includes('tokens')) {
     log(
-      'Warning: this component expects semantic CSS variables from @nim-ui/tokens, but config.tokens is false.',
+      'Warning: this component expects semantic CSS variables from @nimjs/tokens, but config.tokens is false.',
     );
   }
 }

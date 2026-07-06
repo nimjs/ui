@@ -1,4 +1,4 @@
-import { cn } from '@nim-ui/utils';
+import { cn } from '@nimjs/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 
@@ -9,7 +9,8 @@ const buttonVariants = cva(
       variant: {
         primary: 'bg-primary text-primary-foreground hover:opacity-90',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-muted',
-        outline: 'border border-border bg-background text-foreground hover:bg-muted',
+        outline:
+          'border border-border bg-background text-foreground hover:bg-muted',
         ghost: 'bg-transparent text-foreground hover:bg-muted',
         destructive:
           'bg-destructive text-destructive-foreground hover:opacity-90',
@@ -29,7 +30,8 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(

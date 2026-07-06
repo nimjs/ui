@@ -1,8 +1,7 @@
 'use client';
 
-import { cn } from '@nim-ui/utils';
+import { cn } from '@nimjs/utils';
 import { useState } from 'react';
-
 
 interface CodeBlockProps {
   code: string;

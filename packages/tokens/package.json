@@ -1,16 +1,16 @@
 {
-  "name": "@nim-ui/tokens",
+  "name": "@nimjs/tokens",
   "version": "0.0.0",
-  "description": "Design tokens and theme primitives for Nim UI.",
+  "description": "Design tokens and theme primitives for UI.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nimjs/nim-ui.git"
+    "url": "git+https://github.com/nimjs/ui.git"
   },
   "bugs": {
-    "url": "https://github.com/nimjs/nim-ui/issues"
+    "url": "https://github.com/nimjs/ui/issues"
   },
-  "homepage": "https://github.com/nimjs/nim-ui#readme",
+  "homepage": "https://github.com/nimjs/ui#readme",
   "publishConfig": {
     "access": "public"
   },

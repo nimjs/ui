@@ -1,7 +1,7 @@
-# Nim UI
+# UI
 
-[![CI](https://img.shields.io/github/actions/workflow/status/nimjs/nim-ui/ci.yml?branch=main&label=ci)](https://github.com/nimjs/nim-ui/actions/workflows/ci.yml)
-[![Docs](https://img.shields.io/github/actions/workflow/status/nimjs/nim-ui/docs.yml?branch=main&label=docs)](https://github.com/nimjs/nim-ui/actions/workflows/docs.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/nimjs/ui/ci.yml?branch=main&label=ci)](https://github.com/nimjs/ui/actions/workflows/ci.yml)
+[![Docs](https://img.shields.io/github/actions/workflow/status/nimjs/ui/docs.yml?branch=main&label=docs)](https://github.com/nimjs/ui/actions/workflows/docs.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-white.svg)](./LICENSE)
 [![pnpm](https://img.shields.io/badge/pnpm-9.15.4-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
 [![Turborepo](https://img.shields.io/badge/turbo-monorepo-EF4444?logo=turborepo&logoColor=white)](https://turbo.build/repo)
@@ -11,11 +11,11 @@ Open-source component ecosystem by `nimjs` for teams that want more than a UI
 library: design tokens, typed component registry, CLI scaffolding, system-first
 docs, and release discipline in one production-ready monorepo.
 
-Nim UI is inspired by the developer experience standards of modern component
+UI is inspired by the developer experience standards of modern component
 systems, but it is designed as an independent OSS product with explicit package
 boundaries, contributor-safe public APIs, and maintainable release mechanics.
 
-## Why Nim UI
+## Why UI
 
 - Build and document UI primitives from the same system source of truth.
 - Keep tokens, docs, CLI, and components aligned through typed metadata.
@@ -25,17 +25,17 @@ boundaries, contributor-safe public APIs, and maintainable release mechanics.
 
 ## What You Get
 
-- `@nim-ui/tokens`
+- `@nimjs/tokens`
   Design tokens, semantic themes, and CSS variables.
-- `@nim-ui/registry`
+- `@nimjs/registry`
   Typed component manifests shared by CLI and docs.
-- `@nim-ui/ui`
+- `@nimjs/ui`
   React component package with explicit public exports.
-- `@nim-ui/utils`
+- `@nimjs/utils`
   Shared helpers such as `cn()` and small DOM-safe utilities.
-- `@nim-ui/cli`
+- `@nimjs/cli`
   Registry-driven scaffolding foundation for `init` and `add`.
-- `@nim-ui/docs`
+- `@nimjs/docs`
   Next.js App Router docs and demo app.
 - OSS baseline
   Changesets, CI/CD, governance, security policy, CODEOWNERS, templates, and Dependabot.
@@ -60,11 +60,11 @@ tooling/                 Repo-level setup and support files
 
 ## System Flow
 
-Nim UI is structured as a system, not a gallery of unrelated packages.
+UI is structured as a system, not a gallery of unrelated packages.
 
-1. Tokens are defined in `@nim-ui/tokens`.
+1. Tokens are defined in `@nimjs/tokens`.
 2. Tokens map to semantic CSS variables consumed by UI components.
-3. Components are described in `@nim-ui/registry`.
+3. Components are described in `@nimjs/registry`.
 4. The CLI reads the registry to scaffold component files.
 5. Docs read the same registry metadata to explain tokens, dependencies, and usage.
 
@@ -133,7 +133,7 @@ Current capabilities:
 
 - `init`
 - `add <component>`
-- `nim-ui.config.ts` resolution with sensible defaults
+- `ui.config.ts` resolution with sensible defaults
 - registry-driven template lookup
 - basic dependency reporting
 - friendly validation and error messages
@@ -142,7 +142,7 @@ Default config:
 
 ```ts
 export default {
-  componentsDir: "src/components/ui",
+  componentsDir: 'src/components/ui',
   tokens: true,
 };
 ```
@@ -170,7 +170,7 @@ auto-generated sections without losing author control.
 
 ## Public API Discipline
 
-Nim UI follows explicit exports by default.
+UI follows explicit exports by default.
 
 - No `export *` from package roots.
 - No accidental deep internal exports.
@@ -278,7 +278,7 @@ in CI without hard-coupling deployment to a provider-specific preview setup.
 
 ## Open-Source Governance
 
-Nim UI is structured for public maintenance from the start.
+UI is structured for public maintenance from the start.
 
 - [CONTRIBUTING.md](./CONTRIBUTING.md)
 - [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)

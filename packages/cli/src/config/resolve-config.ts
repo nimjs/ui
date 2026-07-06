@@ -3,16 +3,20 @@ import { join } from 'node:path';
 
 import jiti from 'jiti';
 
-import type { NimUiResolvedConfig, NimUiUserConfig } from './types';
+import type { UiResolvedConfig, UiUserConfig } from './types';
 
 export const CONFIG_FILE_NAMES = [
+  'ui.config.ts',
+  'ui.config.mts',
+  'ui.config.js',
+  'ui.config.mjs',
   'nim-ui.config.ts',
   'nim-ui.config.mts',
   'nim-ui.config.js',
   'nim-ui.config.mjs',
 ] as const;
 
-export const defaultConfig: NimUiResolvedConfig = {
+export const defaultConfig: UiResolvedConfig = {
   componentsDir: 'src/components/ui',
   configPath: null,
   tokens: true,
@@ -26,24 +30,25 @@ function findConfigPath(cwd: string) {
   );
 }
 
-function validateConfig(config: NimUiUserConfig, configPath: string) {
+function validateConfig(config: UiUserConfig, configPath: string) {
   if (
     config.componentsDir !== undefined &&
-    (typeof config.componentsDir !== 'string' || config.componentsDir.trim() === '')
+    (typeof config.componentsDir !== 'string' ||
+      config.componentsDir.trim() === '')
   ) {
     throw new Error(
-      `Invalid nim-ui config at ${configPath}: "componentsDir" must be a non-empty string.`,
+      `Invalid ui config at ${configPath}: "componentsDir" must be a non-empty string.`,
     );
   }
 
   if (config.tokens !== undefined && typeof config.tokens !== 'boolean') {
     throw new Error(
-      `Invalid nim-ui config at ${configPath}: "tokens" must be a boolean.`,
+      `Invalid ui config at ${configPath}: "tokens" must be a boolean.`,
     );
   }
 }
 
-export async function resolveConfig(cwd: string): Promise<NimUiResolvedConfig> {
+export async function resolveConfig(cwd: string): Promise<UiResolvedConfig> {
   const configPath = findConfigPath(cwd);
 
   if (!configPath) {
@@ -54,7 +59,7 @@ export async function resolveConfig(cwd: string): Promise<NimUiResolvedConfig> {
     interopDefault: true,
     moduleCache: false,
   });
-  const loaded = (await load.import(configPath)) as NimUiUserConfig;
+  const loaded = (await load.import(configPath)) as UiUserConfig;
 
   validateConfig(loaded, configPath);
 

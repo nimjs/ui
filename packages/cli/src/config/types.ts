@@ -1,9 +1,9 @@
-export interface NimUiUserConfig {
+export interface UiUserConfig {
   componentsDir?: string;
   tokens?: boolean;
 }
 
-export interface NimUiResolvedConfig {
+export interface UiResolvedConfig {
   componentsDir: string;
   configPath: string | null;
   tokens: boolean;

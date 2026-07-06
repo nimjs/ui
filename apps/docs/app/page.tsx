@@ -1,4 +1,3 @@
-
 import {
   Badge,
   Card,
@@ -6,8 +5,8 @@ import {
   CardHeader,
   CardTitle,
   buttonVariants,
-} from '@nim-ui/ui';
-import { cn } from '@nim-ui/utils';
+} from '@nimjs/ui';
+import { cn } from '@nimjs/utils';
 import Link from 'next/link';
 
 const pillars = [
@@ -37,7 +36,7 @@ export default function HomePage() {
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground">
               N
             </span>
-            Nim UI
+            UI
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
             <Link href="/docs/introduction">Docs</Link>
@@ -59,7 +58,7 @@ export default function HomePage() {
                 A modern design system monorepo built for scale and stewardship.
               </p>
               <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-                Nim UI separates tokens, components, docs, and release mechanics so
+                UI separates tokens, components, docs, and release mechanics so
                 contributors can move quickly without sacrificing product rigor.
               </p>
             </div>

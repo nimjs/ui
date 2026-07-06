@@ -1,5 +1,5 @@
 {
-  "name": "@nim-ui/docs",
+  "name": "@nimjs/docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,10 +13,10 @@
     "typecheck": "next typegen && tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@nim-ui/registry": "workspace:*",
-    "@nim-ui/tokens": "workspace:*",
-    "@nim-ui/ui": "workspace:*",
-    "@nim-ui/utils": "workspace:*",
+    "@nimjs/registry": "workspace:*",
+    "@nimjs/tokens": "workspace:*",
+    "@nimjs/ui": "workspace:*",
+    "@nimjs/utils": "workspace:*",
     "next": "^15.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

@@ -1,9 +1,8 @@
 'use client';
 
-import { cn } from '@nim-ui/utils';
+import { cn } from '@nimjs/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
 
 import { navigationGroups } from '@/content/navigation';
 

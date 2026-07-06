@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@nim-ui/registry": ["../registry/src/index.ts"]
+      "@nimjs/registry": ["../registry/src/index.ts"]
     },
     "outDir": "dist"
   },

@@ -50,9 +50,9 @@ jobs:
 
       - name: Build docs for GitHub Pages
         env:
-          GITHUB_PAGES: "true"
+          GITHUB_PAGES: 'true'
           NEXT_PUBLIC_BASE_PATH: ${{ format('/{0}', github.event.repository.name) }}
-        run: pnpm turbo run build:pages --filter=@nim-ui/docs
+        run: pnpm turbo run build:pages --filter=@nimjs/docs
 
       - name: Disable Jekyll processing
         run: touch apps/docs/out/.nojekyll

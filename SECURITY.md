@@ -6,7 +6,7 @@ Please do not open a public GitHub issue for suspected security vulnerabilities.
 
 Instead, report the issue privately through GitHub Security Advisories:
 
-`https://github.com/nimjs/nim-ui/security/advisories/new`
+`https://github.com/nimjs/ui/security/advisories/new`
 
 Include:
 
@@ -22,11 +22,11 @@ responsible disclosure process.
 
 During early public development, security fixes are best-effort for:
 
-| Version | Supported |
-| ------- | --------- |
-| `main`  | Yes       |
-| latest published minor | Yes |
-| older prereleases | No |
+| Version                | Supported |
+| ---------------------- | --------- |
+| `main`                 | Yes       |
+| latest published minor | Yes       |
+| older prereleases      | No        |
 
 ## Disclosure Policy
 

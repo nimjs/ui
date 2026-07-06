@@ -68,7 +68,7 @@ export const themingPage: DocPage = {
         {
           label: 'Pipeline',
           language: 'bash',
-          code: `registry -> docs meta -> design tokens -> CSS variables -> @nim-ui/ui -> docs and consumer apps`,
+          code: `registry -> docs meta -> design tokens -> CSS variables -> @nimjs/ui -> docs and consumer apps`,
         },
       ],
     },

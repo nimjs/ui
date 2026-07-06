@@ -6,7 +6,7 @@ import {
   type RegistryComponentName,
   type RegistryDependency,
   type RegistrySystemDependency,
-} from '@nim-ui/registry';
+} from '@nimjs/registry';
 
 export interface ResolvedRegistryDependencies {
   components: RegistryComponentName[];

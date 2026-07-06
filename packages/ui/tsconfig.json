@@ -4,7 +4,7 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@nim-ui/utils": ["../utils/src/index.ts"]
+      "@nimjs/utils": ["../utils/src/index.ts"]
     },
     "types": ["node", "vitest/globals", "@testing-library/jest-dom"]
   },

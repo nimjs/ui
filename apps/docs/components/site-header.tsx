@@ -8,7 +8,7 @@ export function SiteHeader() {
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground">
             N
           </span>
-          Nim UI
+          UI
         </Link>
         <nav className="flex items-center gap-5 text-sm text-muted-foreground">
           <Link className="hover:text-foreground" href="/docs">

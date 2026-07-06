@@ -1,5 +1,5 @@
 {
-  "name": "@nim-ui/eslint-config",
+  "name": "@nimjs/eslint-config",
   "version": "0.0.0",
   "private": true,
   "type": "module",

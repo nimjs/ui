@@ -1,6 +1,6 @@
-# @nim-ui/ui
+# @nimjs/ui
 
-Core React components for Nim UI.
+Core React components for UI.
 
 Included in the baseline:
 

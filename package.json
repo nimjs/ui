@@ -1,5 +1,5 @@
 {
-  "name": "nim-ui",
+  "name": "ui",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@9.15.4",
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "turbo run build",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
-    "dev": "turbo run dev --filter=@nim-ui/docs",
+    "dev": "turbo run dev --filter=@nimjs/docs",
     "format": "prettier --write .",
     "lint": "turbo run lint",
     "test": "turbo run test",

@@ -1,6 +1,6 @@
-# @nim-ui/docs
+# @nimjs/docs
 
-Next.js App Router docs and demo application for Nim UI.
+Next.js App Router docs and demo application for UI.
 
 Goals:
 

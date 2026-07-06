@@ -1,6 +1,6 @@
-# @nim-ui/utils
+# @nimjs/utils
 
-Shared utility helpers used across the Nim UI monorepo.
+Shared utility helpers used across the UI monorepo.
 
 Current exports:
 

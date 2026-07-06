@@ -1,6 +1,6 @@
 # Governance
 
-This document describes how Nim UI is maintained as an open-source project.
+This document describes how UI is maintained as an open-source project.
 
 ## Roles
 

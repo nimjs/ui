@@ -4,7 +4,7 @@ export const designSystemPage: DocPage = {
   slug: 'design-system',
   title: 'Design System',
   description:
-    'Nim UI treats visual decisions as system contracts: token layers, component anatomy, states, and accessibility metadata move through the same registry-backed workflow.',
+    'UI treats visual decisions as system contracts: token layers, component anatomy, states, and accessibility metadata move through the same registry-backed workflow.',
   eyebrow: 'Design System',
   sections: [
     {

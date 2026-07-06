@@ -1,6 +1,6 @@
-# @nim-ui/tokens
+# @nimjs/tokens
 
-Central design tokens package for Nim UI.
+Central design tokens package for UI.
 
 It exposes:
 
@@ -8,5 +8,5 @@ It exposes:
 - semantic light theme mappings
 - CSS variables for applications and component packages
 
-Use `@nim-ui/tokens/styles.css` in apps and rely on semantic variables such as
+Use `@nimjs/tokens/styles.css` in apps and rely on semantic variables such as
 `--background`, `--foreground`, and `--primary` instead of hardcoded colors.

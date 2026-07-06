@@ -1,17 +1,17 @@
 name: Bug report
 description: Report a reproducible defect or regression.
-title: "[Bug]: "
+title: '[Bug]: '
 labels:
   - bug
 body:
   - type: markdown
     attributes:
-      value: Thanks for helping improve Nim UI. Please include a minimal reproduction when possible.
+      value: Thanks for helping improve UI. Please include a minimal reproduction when possible.
   - type: input
     id: package
     attributes:
       label: Affected package
-      placeholder: "@nim-ui/ui"
+      placeholder: '@nimjs/ui'
     validations:
       required: true
   - type: textarea

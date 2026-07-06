@@ -1,17 +1,17 @@
 {
-  "name": "@nim-ui/utils",
+  "name": "@nimjs/utils",
   "version": "0.0.0",
-  "description": "Shared utility helpers for Nim UI.",
+  "description": "Shared utility helpers for UI.",
   "license": "MIT",
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nimjs/nim-ui.git"
+    "url": "git+https://github.com/nimjs/ui.git"
   },
   "bugs": {
-    "url": "https://github.com/nimjs/nim-ui/issues"
+    "url": "https://github.com/nimjs/ui/issues"
   },
-  "homepage": "https://github.com/nimjs/nim-ui#readme",
+  "homepage": "https://github.com/nimjs/ui#readme",
   "publishConfig": {
     "access": "public"
   },

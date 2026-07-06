@@ -11,7 +11,7 @@ export const cardPage = createComponentPage(meta, {
   slug: 'card',
   eyebrow: 'Component',
   preview: 'card',
-  code: `import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from '@nim-ui/ui';\n\nexport function Example() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Workspace analytics</CardTitle>\n        <CardDescription>Weekly delivery overview.</CardDescription>\n      </CardHeader>\n      <CardContent>Track releases and contributor activity.</CardContent>\n    </Card>\n  );\n}`,
+  code: `import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from '@nimjs/ui';\n\nexport function Example() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Workspace analytics</CardTitle>\n        <CardDescription>Weekly delivery overview.</CardDescription>\n      </CardHeader>\n      <CardContent>Track releases and contributor activity.</CardContent>\n    </Card>\n  );\n}`,
   sections: [
     {
       title: 'Guidance',

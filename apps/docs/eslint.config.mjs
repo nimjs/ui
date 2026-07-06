@@ -1,4 +1,4 @@
-import { createNextConfig } from '@nim-ui/eslint-config/next';
+import { createNextConfig } from '@nimjs/eslint-config/next';
 
 export default createNextConfig({
   tsconfigRootDir: import.meta.dirname,

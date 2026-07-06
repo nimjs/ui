@@ -1,6 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@nim-ui/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@nimjs/ui';
 import Link from 'next/link';
-
 
 import { docsPages } from '@/lib/content';
 
@@ -15,8 +14,8 @@ export default function DocsIndexPage() {
           Product docs and contributor pathways
         </h1>
         <p className="max-w-3xl text-lg text-muted-foreground">
-          Architecture, installation, theming, and component guidance are kept in
-          the repository so the docs stay aligned with the shipped packages.
+          Architecture, installation, theming, and component guidance are kept
+          in the repository so the docs stay aligned with the shipped packages.
         </p>
       </div>
 

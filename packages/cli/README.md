@@ -1,11 +1,11 @@
-# @nim-ui/cli
+# @nimjs/cli
 
-Foundation CLI for Nim UI.
+Foundation CLI for UI.
 
 Current commands:
 
-- `nim-ui init`
-- `nim-ui add <component>`
+- `ui init`
+- `ui add <component>`
 
 The current implementation is intentionally small, but the package layout already
 supports:
@@ -16,5 +16,5 @@ supports:
 - local templates
 - future remote registry support
 
-`nim-ui add` now reads from `@nim-ui/registry`, resolves basic dependencies, and
-loads `nim-ui.config.ts` when present.
+`ui add` now reads from `@nimjs/registry`, resolves basic dependencies, and
+loads `ui.config.ts` when present.

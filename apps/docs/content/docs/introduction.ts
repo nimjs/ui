@@ -4,7 +4,7 @@ export const introductionPage: DocPage = {
   slug: 'introduction',
   title: 'Introduction',
   description:
-    'Nim UI is a monorepo-oriented UI ecosystem that keeps design tokens, React components, docs, and future CLI workflows aligned from the beginning.',
+    'UI is a monorepo-oriented UI ecosystem that keeps design tokens, React components, docs, and future CLI workflows aligned from the beginning.',
   eyebrow: 'Getting Started',
   sections: [
     {

@@ -2,7 +2,7 @@ import {
   getRegistryComponent,
   type RegistryComponentManifest,
   type RegistryComponentName,
-} from '@nim-ui/registry';
+} from '@nimjs/registry';
 
 export interface CodeBlockContent {
   label: string;

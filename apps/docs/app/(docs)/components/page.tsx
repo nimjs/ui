@@ -1,6 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@nim-ui/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@nimjs/ui';
 import Link from 'next/link';
-
 
 import { componentPages } from '@/lib/content';
 
@@ -15,8 +14,9 @@ export default function ComponentsIndexPage() {
           Small, documented building blocks
         </h1>
         <p className="max-w-3xl text-lg text-muted-foreground">
-          The baseline library is intentionally small, but the architecture supports
-          predictable growth through tokens, shared utilities, and strict exports.
+          The baseline library is intentionally small, but the architecture
+          supports predictable growth through tokens, shared utilities, and
+          strict exports.
         </p>
       </div>
 

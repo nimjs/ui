@@ -1,4 +1,4 @@
-import { createReactLibraryConfig } from '@nim-ui/eslint-config/react-library';
+import { createReactLibraryConfig } from '@nimjs/eslint-config/react-library';
 
 export default createReactLibraryConfig({
   tsconfigRootDir: import.meta.dirname,

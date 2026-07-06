@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { defaultConfig } from '../config/resolve-config';
 import { log } from '../lib/output';
 
-const CONFIG_FILE_NAME = 'nim-ui.config.ts';
+const CONFIG_FILE_NAME = 'ui.config.ts';
 
 export function runInit(cwd: string) {
   const destination = join(cwd, CONFIG_FILE_NAME);
@@ -23,5 +23,5 @@ export function runInit(cwd: string) {
   log(`Created ${CONFIG_FILE_NAME}`);
   log('Next steps:');
   log('1. Adjust aliases and Tailwind paths to match your app.');
-  log('2. Run `nim-ui add button` to scaffold a first component template.');
+  log('2. Run `ui add button` to scaffold a first component template.');
 }

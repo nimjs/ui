@@ -1,4 +1,4 @@
-# Contributing To Nim UI
+# Contributing To UI
 
 Thanks for contributing. This repository is structured to be welcoming to
 external contributors while keeping maintainers confident about API stability and
@@ -52,7 +52,7 @@ typecheck, and build.
 
 ## Naming Conventions
 
-- Package names use the `@nim-ui/*` scope.
+- Package names use the `@nimjs/*` scope.
 - Component directories and route slugs use lowercase kebab-case.
 - React component names use PascalCase.
 - Public exports should stay explicit and intentionally curated.

@@ -1,5 +1,5 @@
 {
-  "name": "@nim-ui/tsconfig",
+  "name": "@nimjs/tsconfig",
   "version": "0.0.0",
   "private": true,
   "files": [

@@ -11,10 +11,10 @@ const nextConfig = {
     unoptimized: true,
   },
   transpilePackages: [
-    '@nim-ui/registry',
-    '@nim-ui/tokens',
-    '@nim-ui/ui',
-    '@nim-ui/utils',
+    '@nimjs/registry',
+    '@nimjs/tokens',
+    '@nimjs/ui',
+    '@nimjs/utils',
   ],
 };
 

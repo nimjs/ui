@@ -1,6 +1,5 @@
-import { Button, Card, CardContent, CardHeader, CardTitle } from '@nim-ui/ui';
+import { Button, Card, CardContent, CardHeader, CardTitle } from '@nimjs/ui';
 import Link from 'next/link';
-
 
 export default function NotFound() {
   return (

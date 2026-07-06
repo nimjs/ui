@@ -3,31 +3,14 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@nim-ui/tokens": [
-        "../../packages/tokens/src/index.ts"
-      ],
-      "@nim-ui/registry": [
-        "../../packages/registry/src/index.ts"
-      ],
-      "@nim-ui/ui": [
-        "../../packages/ui/src/index.ts"
-      ],
-      "@nim-ui/utils": [
-        "../../packages/utils/src/index.ts"
-      ]
+      "@/*": ["./*"],
+      "@nimjs/tokens": ["../../packages/tokens/src/index.ts"],
+      "@nimjs/registry": ["../../packages/registry/src/index.ts"],
+      "@nimjs/ui": ["../../packages/ui/src/index.ts"],
+      "@nimjs/utils": ["../../packages/utils/src/index.ts"]
     },
     "jsx": "preserve"
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

@@ -11,7 +11,7 @@ export const inputPage = createComponentPage(meta, {
   slug: 'input',
   eyebrow: 'Component',
   preview: 'input',
-  code: `import { Input } from '@nim-ui/ui';\n\nexport function Example() {\n  return <Input placeholder="team@nim-ui.dev" type="email" />;\n}`,
+  code: `import { Input } from '@nimjs/ui';\n\nexport function Example() {\n  return <Input placeholder="team@example.com" type="email" />;\n}`,
   sections: [
     {
       title: 'Guidance',

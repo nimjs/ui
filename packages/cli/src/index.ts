@@ -7,10 +7,10 @@ import { parseArgs } from './lib/args';
 import { error, log } from './lib/output';
 
 function printHelp() {
-  log('nim-ui');
+  log('ui');
   log('');
   log('Commands:');
-  log('  init              Create a nim-ui.config.json file');
+  log('  init              Create a ui.config.ts file');
   log('  add <component>   Scaffold a component from the local registry');
 }
 
@@ -23,14 +23,16 @@ function main() {
       runInit(workingDirectory);
       return;
     case 'add':
-      void runAdd(workingDirectory, parsed.positional[0]).catch((cause: unknown) => {
-        error(
-          cause instanceof Error
-            ? cause.message
-            : 'Unexpected error while adding component.',
-        );
-        process.exitCode = 1;
-      });
+      void runAdd(workingDirectory, parsed.positional[0]).catch(
+        (cause: unknown) => {
+          error(
+            cause instanceof Error
+              ? cause.message
+              : 'Unexpected error while adding component.',
+          );
+          process.exitCode = 1;
+        },
+      );
       return;
     case '--help':
     case '-h':

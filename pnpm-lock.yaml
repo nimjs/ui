@@ -101,16 +101,16 @@ importers:
 
   apps/docs:
     dependencies:
-      '@nim-ui/registry':
+      '@nimjs/registry':
         specifier: workspace:*
         version: link:../../packages/registry
-      '@nim-ui/tokens':
+      '@nimjs/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@nim-ui/ui':
+      '@nimjs/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@nim-ui/utils':
+      '@nimjs/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       next:
@@ -125,7 +125,7 @@ importers:
 
   packages/cli:
     dependencies:
-      '@nim-ui/registry':
+      '@nimjs/registry':
         specifier: workspace:*
         version: link:../registry
       jiti:
@@ -142,10 +142,10 @@ importers:
 
   packages/ui:
     dependencies:
-      '@nim-ui/tokens':
+      '@nimjs/tokens':
         specifier: workspace:*
         version: link:../tokens
-      '@nim-ui/utils':
+      '@nimjs/utils':
         specifier: workspace:*
         version: link:../utils
       class-variance-authority:

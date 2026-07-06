@@ -1,17 +1,17 @@
 {
-  "name": "@nim-ui/cli",
+  "name": "@nimjs/cli",
   "version": "0.0.0",
-  "description": "CLI foundation for Nim UI project initialization and component scaffolding.",
+  "description": "CLI foundation for UI project initialization and component scaffolding.",
   "license": "MIT",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nimjs/nim-ui.git"
+    "url": "git+https://github.com/nimjs/ui.git"
   },
   "bugs": {
-    "url": "https://github.com/nimjs/nim-ui/issues"
+    "url": "https://github.com/nimjs/ui/issues"
   },
-  "homepage": "https://github.com/nimjs/nim-ui#readme",
+  "homepage": "https://github.com/nimjs/ui#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -21,7 +21,7 @@
     "README.md"
   ],
   "bin": {
-    "nim-ui": "./dist/index.js"
+    "ui": "./dist/index.js"
   },
   "exports": {
     ".": {
@@ -41,7 +41,7 @@
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@nim-ui/registry": "workspace:*",
+    "@nimjs/registry": "workspace:*",
     "jiti": "^2.4.2"
   }
 }

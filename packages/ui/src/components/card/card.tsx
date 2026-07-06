@@ -1,4 +1,4 @@
-import { cn } from '@nim-ui/utils';
+import { cn } from '@nimjs/utils';
 import * as React from 'react';
 
 export const Card = React.forwardRef<

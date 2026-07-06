@@ -1,6 +1,6 @@
-# @nim-ui/registry
+# @nimjs/registry
 
-Typed component registry for Nim UI.
+Typed component registry for UI.
 
 This package is the shared source of truth for:
 

@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
   Input,
-} from '@nim-ui/ui';
+} from '@nimjs/ui';
 
 type PreviewId = 'button' | 'input' | 'card' | 'badge';
 
@@ -26,10 +26,13 @@ export function ComponentPreview({ preview }: { preview: PreviewId }) {
     case 'input':
       return (
         <div className="max-w-md space-y-3">
-          <label className="block text-sm font-medium text-foreground" htmlFor="email">
+          <label
+            className="block text-sm font-medium text-foreground"
+            htmlFor="email"
+          >
             Email
           </label>
-          <Input id="email" placeholder="team@nim-ui.dev" type="email" />
+          <Input id="email" placeholder="team@example.com" type="email" />
           <p className="text-sm text-muted-foreground">
             Inputs inherit semantic focus styles from the theme layer.
           </p>
@@ -45,8 +48,8 @@ export function ComponentPreview({ preview }: { preview: PreviewId }) {
             </CardDescription>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground">
-            Keep card primitives simple so contributors can read, change, and extend
-            them without hidden runtime behavior.
+            Keep card primitives simple so contributors can read, change, and
+            extend them without hidden runtime behavior.
           </CardContent>
           <CardFooter>
             <Button size="sm">Ship</Button>

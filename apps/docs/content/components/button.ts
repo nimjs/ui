@@ -11,7 +11,7 @@ export const buttonPage = createComponentPage(meta, {
   slug: 'button',
   eyebrow: 'Component',
   preview: 'button',
-  code: `import { Button } from '@nim-ui/ui';\n\nexport function Example() {\n  return (\n    <div className="flex gap-3">\n      <Button>Primary</Button>\n      <Button variant="secondary">Secondary</Button>\n      <Button variant="outline">Outline</Button>\n    </div>\n  );\n}`,
+  code: `import { Button } from '@nimjs/ui';\n\nexport function Example() {\n  return (\n    <div className="flex gap-3">\n      <Button>Primary</Button>\n      <Button variant="secondary">Secondary</Button>\n      <Button variant="outline">Outline</Button>\n    </div>\n  );\n}`,
   sections: [
     {
       title: 'Guidance',
