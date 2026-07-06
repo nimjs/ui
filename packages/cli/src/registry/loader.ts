@@ -72,6 +72,7 @@ export function describeRegistryComponent(
         ? resolvedDependencies.system.join(', ')
         : 'none',
     files: manifest.files.join(', '),
+    status: manifest.status,
     tokens: manifest.tokens.join(', '),
   };
 }

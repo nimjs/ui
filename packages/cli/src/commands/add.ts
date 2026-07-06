@@ -46,7 +46,9 @@ export async function runAdd(cwd: string, componentName?: string) {
     return;
   }
 
-  const manifest = loadRegistryComponent(componentName as RegistryComponentName);
+  const manifest = loadRegistryComponent(
+    componentName as RegistryComponentName,
+  );
   const resolvedDependencies = resolveRegistryDependencies(
     componentName as RegistryComponentName,
   );
@@ -57,7 +59,11 @@ export async function runAdd(cwd: string, componentName?: string) {
   mkdirSync(outputDir, { recursive: true });
 
   for (const fileName of manifest.files) {
-    const templatePath = join(templateRoot, manifest.name, `${fileName}.template`);
+    const templatePath = join(
+      templateRoot,
+      manifest.name,
+      `${fileName}.template`,
+    );
     const destinationPath = join(outputDir, fileName);
 
     if (!existsSync(templatePath)) {
@@ -80,6 +86,7 @@ export async function runAdd(cwd: string, componentName?: string) {
   const summary = describeRegistryComponent(manifest, resolvedDependencies);
 
   log(`Added ${componentName} from the local registry.`);
+  log(`Status: ${summary.status}`);
   log(`Files: ${summary.files}`);
   log(`Registry dependencies: ${summary.dependencies}`);
   log(`Tokens: ${summary.tokens}`);
