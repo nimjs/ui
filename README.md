@@ -7,13 +7,26 @@
 [![Turborepo](https://img.shields.io/badge/turbo-monorepo-EF4444?logo=turborepo&logoColor=white)](https://turbo.build/repo)
 [![TypeScript](https://img.shields.io/badge/typescript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-Open-source component ecosystem by `nimjs` for teams that want more than a UI
-library: design tokens, typed component registry, CLI scaffolding, system-first
-docs, and release discipline in one production-ready monorepo.
+Open-source component ecosystem by `nimjs`: design tokens, a typed component
+registry, React components, CLI scaffolding, and documentation in one monorepo.
 
-UI is inspired by the developer experience standards of modern component
-systems, but it is designed as an independent OSS product with explicit package
-boundaries, contributor-safe public APIs, and maintainable release mechanics.
+**Status:** early-stage foundation. Four components and local CLI scaffolding
+exist today. There is no public release yet. Installing copied components into
+a fresh external project still requires manual setup of imports, utilities,
+styles, and dependencies.
+
+The product direction is a two-path experience: use the published React package
+when centralized updates matter, or copy component source into an application
+when local ownership matters. Both paths should share component behavior and
+documentation.
+
+For concrete boundaries and next steps, read the [architecture](docs/architecture.md),
+[roadmap](docs/roadmap.md), and [AI task briefs](docs/ai-tasks.md).
+
+UI is inspired by the developer experience of code registries such as shadcn/ui,
+while maintaining its own component source, design tokens, and public package
+API. The repository already has package boundaries and release tooling; the
+roadmap defines the consumer checks needed before the first release.
 
 ## Why UI
 
