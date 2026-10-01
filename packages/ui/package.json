@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "React UI components for UI.",
   "license": "MIT",
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/styles/index.css"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nimjs/ui.git"
