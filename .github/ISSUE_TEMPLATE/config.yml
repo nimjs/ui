@@ -1,8 +1,8 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
-  - name: Support and usage questions
-    url: https://github.com/nimjs/ui/discussions
-    about: Please use Discussions for questions and usage support.
+  - name: Support guidance
+    url: https://github.com/nimjs/ui/blob/main/SUPPORT.md
+    about: Find the right channel for usage questions and support.
   - name: Security vulnerability
     url: https://github.com/nimjs/ui/security/advisories/new
     about: Report suspected vulnerabilities privately.

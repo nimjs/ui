@@ -6,12 +6,23 @@ labels:
 body:
   - type: markdown
     attributes:
-      value: Thanks for helping improve UI. Please include a minimal reproduction when possible.
+      value: Thanks for helping improve NimJS UI. Please include a minimal reproduction when possible.
   - type: input
     id: package
     attributes:
       label: Affected package
       placeholder: '@nimjs/ui'
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Usage path
+      options:
+        - Package mode
+        - Copy mode
+        - Repository development
+        - Other
     validations:
       required: true
   - type: textarea
