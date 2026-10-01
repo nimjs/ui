@@ -40,7 +40,7 @@ export function ComponentPreview({ preview }: { preview: PreviewId }) {
       );
     case 'card':
       return (
-        <Card className="max-w-lg bg-white">
+        <Card className="max-w-lg bg-card">
           <CardHeader>
             <CardTitle>Release candidate</CardTitle>
             <CardDescription>

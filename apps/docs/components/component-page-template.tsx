@@ -6,9 +6,8 @@ import { DocSection } from './doc-section';
 
 import type { ComponentPage } from '@/content/types';
 
-const metadataCardClassName = 'rounded-lg border border-border bg-white p-5';
-const metadataEyebrowClassName =
-  'text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand-red)]';
+const metadataCardClassName = 'metadata-section';
+const metadataEyebrowClassName = 'metadata-label';
 
 function formatLabel(value: string) {
   return value.replaceAll('-', ' ');
@@ -58,26 +57,22 @@ export function ComponentPageTemplate({ page }: { page: ComponentPage }) {
   const { manifest } = page;
 
   return (
-    <article className="max-w-4xl space-y-10">
+    <article className="docs-article">
       <header className="space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-brand-red)]">
-          {page.eyebrow}
-        </p>
-        <h1 className="font-display text-5xl font-semibold">{page.title}</h1>
-        <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
-          {page.description}
-        </p>
+        <p className="eyebrow">{page.eyebrow}</p>
+        <h1>{page.title}</h1>
+        <p className="docs-lede">{page.description}</p>
       </header>
 
-      <section className="space-y-5">
-        <h2 className="font-display text-3xl font-semibold">Preview</h2>
-        <div className="rounded-[1.5rem] border border-border bg-white p-6 shadow-soft">
+      <section className="doc-section">
+        <h2>Preview</h2>
+        <div className="component-preview-surface">
           <ComponentPreview preview={page.preview} />
         </div>
       </section>
 
-      <section className="space-y-5">
-        <h2 className="font-display text-3xl font-semibold">Usage</h2>
+      <section className="doc-section">
+        <h2>Usage</h2>
         <p className="text-sm text-muted-foreground">
           This example uses package mode. In copy mode, import the generated
           component from your project and complete the manual setup steps in the
@@ -90,9 +85,9 @@ export function ComponentPageTemplate({ page }: { page: ComponentPage }) {
         />
       </section>
 
-      <section className="space-y-5">
-        <h2 className="font-display text-3xl font-semibold">System metadata</h2>
-        <div className="grid gap-4 md:grid-cols-2">
+      <section className="doc-section">
+        <h2>System metadata</h2>
+        <div className="metadata-grid">
           <MetadataCard title="Registry">
             <p className="mt-3 text-lg font-semibold">{manifest.name}</p>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -143,7 +138,7 @@ export function ComponentPageTemplate({ page }: { page: ComponentPage }) {
               ))}
             </div>
           </MetadataCard>
-          <MetadataCard className="md:col-span-2" title="Usage patterns">
+          <MetadataCard className="metadata-wide" title="Usage patterns">
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {manifest.usage.map((item) => (
                 <div
