@@ -22,9 +22,25 @@ function main() {
 
   switch (parsed.command) {
     case 'init':
+      if (
+        parsed.positional.length > 0 ||
+        Object.keys(parsed.flags).length > 0
+      ) {
+        error('Usage: ui init');
+        process.exitCode = 1;
+        return;
+      }
       runInit(workingDirectory);
       return;
     case 'add':
+      if (
+        parsed.positional.length !== 1 ||
+        Object.keys(parsed.flags).some((flag) => flag !== 'dry-run')
+      ) {
+        error('Usage: ui add <component> [--dry-run]');
+        process.exitCode = 1;
+        return;
+      }
       if ('dry-run' in parsed.flags && parsed.flags['dry-run'] !== true) {
         error('--dry-run does not take a value.');
         process.exitCode = 1;

@@ -20,6 +20,11 @@ export function parseArgs(argv: string[]): ParsedArgs {
       continue;
     }
 
+    if (current === '--dry-run') {
+      flags['dry-run'] = true;
+      continue;
+    }
+
     const [key, value] = current.slice(2).split('=');
 
     if (!key) {
