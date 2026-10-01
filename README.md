@@ -147,7 +147,7 @@ Current capabilities:
 - `init`
 - `add <component>`
 - `ui.config.ts` resolution with sensible defaults
-- registry-driven template lookup
+- registry-driven canonical source lookup
 - basic dependency reporting
 - friendly validation and error messages
 
@@ -162,6 +162,11 @@ export default {
 
 The current design is ready for future registry fetches, adapters, and canary
 channels without rewriting package boundaries.
+
+`ui add <component> --dry-run` shows the file plan. The CLI copies the same
+component source used by `@nimjs/ui`, with only the utility import adjusted for
+local files. Copy mode still requires manual npm dependency installation and
+Tailwind setup; see the [consumer setup guide](docs/consumer-setup.md).
 
 ## Docs Experience
 

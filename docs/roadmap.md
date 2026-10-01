@@ -24,7 +24,7 @@ React project using only documented commands.
 
 - Add a documented dark theme and verify semantic token coverage.
 - Test interactive components for keyboard, focus, and disabled behavior.
-- Remove or generate duplicated templates after parity is proven.
+- Keep generated CLI assets in parity with canonical source as components evolve.
 - Publish component status and compatibility notes in docs.
 
 **Done when:** each stable component meets the acceptance criteria in

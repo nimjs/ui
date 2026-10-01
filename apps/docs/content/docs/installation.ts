@@ -4,7 +4,7 @@ export const installationPage: DocPage = {
   slug: 'installation',
   title: 'Installation',
   description:
-    'Local development keeps the docs app and package builds in the same monorepo loop, while published packages remain independently consumable.',
+    'UI is not publicly released yet. Package mode and copy mode have different setup steps for external React projects.',
   eyebrow: 'Getting Started',
   sections: [
     {
@@ -21,9 +21,10 @@ export const installationPage: DocPage = {
       ],
     },
     {
-      title: 'Consume tokens and components',
+      title: 'Package mode',
       paragraphs: [
-        'Applications should import the token stylesheet once near the root, then rely on semantic Tailwind classes or CSS variables in components and layout code.',
+        'After publication, install @nimjs/ui and @nimjs/tokens. Import the token stylesheet once, then import components from the package root or an explicit subpath.',
+        'The package ships Tailwind class names, not precompiled component CSS. Add node_modules/@nimjs/ui/dist/**/*.{js,mjs} to Tailwind content paths and map semantic color names such as primary, ring, and border to their CSS variables. The docs app Tailwind config contains the full mapping.',
       ],
       codeBlocks: [
         {
@@ -35,6 +36,25 @@ export const installationPage: DocPage = {
           label: 'Component usage',
           language: 'tsx',
           code: `import { Button } from '@nimjs/ui';\n\nexport function HeroActions() {\n  return <Button>Start building</Button>;\n}`,
+        },
+      ],
+    },
+    {
+      title: 'Copy mode',
+      paragraphs: [
+        'The CLI is not publicly released yet. For local testing, pack @nimjs/cli and @nimjs/registry and install both tarballs in an external project. Run ui init, inspect ui add button --dry-run, then run ui add button. The CLI copies canonical component source, a local cn helper, and token CSS. It skips identical files on repeated runs and refuses to overwrite edited files.',
+        'Manual setup is still required: install the npm dependencies reported by the command, import the generated _lib/tokens.css once, and configure Tailwind content paths and semantic colors in your app.',
+      ],
+      codeBlocks: [
+        {
+          label: 'Copy Button',
+          language: 'bash',
+          code: `ui init\nui add button --dry-run\nui add button\npnpm add class-variance-authority clsx tailwind-merge`,
+        },
+        {
+          label: 'Local import',
+          language: 'tsx',
+          code: `import { Button } from './components/ui/button/button';`,
         },
       ],
     },

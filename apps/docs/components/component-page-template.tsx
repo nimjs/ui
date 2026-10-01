@@ -78,6 +78,11 @@ export function ComponentPageTemplate({ page }: { page: ComponentPage }) {
 
       <section className="space-y-5">
         <h2 className="font-display text-3xl font-semibold">Usage</h2>
+        <p className="text-sm text-muted-foreground">
+          This example uses package mode. In copy mode, import the generated
+          component from your project and complete the manual setup steps in the
+          installation guide.
+        </p>
         <CodeBlock
           code={page.code}
           label={`${page.title} example`}
@@ -117,6 +122,9 @@ export function ComponentPageTemplate({ page }: { page: ComponentPage }) {
           </MetadataCard>
           <MetadataCard title="Dependencies">
             <MetadataPills items={manifest.dependencies} />
+          </MetadataCard>
+          <MetadataCard title="Copy-mode npm packages">
+            <MetadataPills items={manifest.npmDependencies ?? []} />
           </MetadataCard>
           <MetadataCard title="Accessibility">
             <MetadataPills items={manifest.accessibility.map(formatLabel)} />

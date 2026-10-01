@@ -34,37 +34,37 @@ CLI installation plan --> copied source in consumer project
 
 `packages/ui/src/components` is the canonical implementation. Registry
 manifests describe component files, dependencies, tokens, status, and docs
-metadata. The CLI should eventually derive copied source from canonical files
-with explicit import transformations. Today `packages/cli/src/templates` holds
-separate templates; parity tests are required until that duplication is removed.
+metadata. The CLI includes canonical source files at build time and changes
+only the utility import when installing them. A parity test compares the
+installed Button against canonical source. The CLI build fails if a manifest
+references a missing component file.
 
 ## Existing package boundaries
 
-| Location | Responsibility |
-| --- | --- |
-| `packages/tokens` | Design scales, semantic CSS variables, themes |
-| `packages/ui` | React components and explicit package exports |
-| `packages/utils` | Small shared helpers used by package components |
-| `packages/registry` | Typed component manifests consumed by docs and CLI |
-| `packages/cli` | Local config, component lookup, scaffolding |
-| `apps/docs` | Getting started, examples, component documentation |
-| `packages/eslint-config`, `packages/tsconfig` | Repository tooling |
+| Location                                      | Responsibility                                     |
+| --------------------------------------------- | -------------------------------------------------- |
+| `packages/tokens`                             | Design scales, semantic CSS variables, themes      |
+| `packages/ui`                                 | React components and explicit package exports      |
+| `packages/utils`                              | Small shared helpers used by package components    |
+| `packages/registry`                           | Typed component manifests consumed by docs and CLI |
+| `packages/cli`                                | Local config, component lookup, scaffolding        |
+| `apps/docs`                                   | Getting started, examples, component documentation |
+| `packages/eslint-config`, `packages/tsconfig` | Repository tooling                                 |
 
 The published package path and copy path should remain independently usable.
 No runtime dependency on the separate `nimjs` project is planned.
 
 ## Registry and CLI target
 
-The current manifest lists files and internal system dependencies, but it does
-not contain enough information to install a component into an arbitrary app.
-A future version needs, for each item:
+The versioned manifest now lists source files, internal system dependencies,
+and npm dependencies. A future version still needs, for each item:
 
 - source files and destination paths;
-- npm dependencies and peer requirements;
+- peer requirements;
 - component dependencies and install order;
 - CSS/token requirements;
 - import aliases and transformations;
-- a schema version and validation errors.
+- richer schema validation errors.
 
 The CLI should resolve the whole dependency graph, show a file and package plan,
 check collisions, then write files and update dependencies. Validate every path
@@ -72,10 +72,11 @@ against the chosen project root. Prefer an inspectable plan and explicit
 overwrite choice; do not execute remote registry scripts. A dry run is a useful
 first step toward safe installation.
 
-The current `ui add` command copies local templates and reports dependencies.
-It does not install npm packages, create `@/lib/utils`, or configure CSS and
-aliases. Documentation must keep those manual steps visible until the CLI
-handles them.
+The current `ui add` command plans all files before writing, rejects collisions
+and paths outside the project, and can show its plan with `--dry-run`. It copies
+the shared `cn` helper and token CSS locally. It does not install npm packages,
+import token CSS into the application, or configure Tailwind. Documentation
+must keep those manual steps visible until the CLI handles them.
 
 ## Component acceptance criteria
 
