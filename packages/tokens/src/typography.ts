@@ -1,7 +1,7 @@
 export const typographyTokens = {
   fontFamily: {
     body: '"Avenir Next", "Manrope", "Segoe UI", sans-serif',
-    display: '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif',
+    display: '"Avenir Next", "Manrope", "Segoe UI", sans-serif',
     mono: '"SFMono-Regular", "Cascadia Code", "Liberation Mono", monospace',
   },
   fontSize: {

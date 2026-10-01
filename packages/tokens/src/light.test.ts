@@ -8,12 +8,15 @@ import { typographyTokens } from './typography';
 
 describe('lightTheme', () => {
   it('maps semantic colors from token primitives', () => {
-    expect(lightTheme.semanticColors.primary).toBe(colorTokens.brand.redStrong);
+    expect(lightTheme.semanticColors.primary).toBe(colorTokens.brand.violet);
     expect(lightTheme.semanticColors.background).toBe(
       colorTokens.neutral.white,
     );
     expect(lightTheme.semanticColors.accentForeground).toBe(
-      colorTokens.brand.deep,
+      colorTokens.brand.violet,
+    );
+    expect(lightTheme.semanticColors.primaryHover).toBe(
+      colorTokens.brand.violetHover,
     );
   });
 

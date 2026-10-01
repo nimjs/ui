@@ -4,6 +4,7 @@ export const motionTokens = {
     fast: '120ms',
     normal: '180ms',
     slow: '240ms',
+    decorative: '700ms',
   },
   easing: {
     standard: 'cubic-bezier(0.2, 0, 0, 1)',

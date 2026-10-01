@@ -1,34 +1,46 @@
 :root,
 [data-theme='light'] {
+  /* Legacy primitives remain available for existing consumers. */
   --color-brand-black: #200101;
   --color-brand-deep: #640e02;
   --color-brand-red: #941102;
   --color-brand-red-strong: #b41902;
   --color-brand-amber: #854508;
-
   --color-accent-ember: #c65b2c;
   --color-accent-flame: #d97706;
   --color-accent-glow: #f3e7de;
 
+  --color-brand-ink: #25213b;
+  --color-brand-violet: #5436b8;
+  --color-brand-vivid: #6948d8;
+  --color-brand-lavender: #a790f3;
+  --color-brand-periwinkle: #b8c2f6;
+  --color-brand-blue: #6b91df;
+  --color-brand-pale: #f0edfb;
+  --color-brand-ice: #f7f4ff;
+  --color-brand-mist: #eef2ff;
+  --color-brand-violet-hover: #472b9f;
+  --color-brand-violet-active: #38217f;
+
   --color-neutral-white: #ffffff;
-  --color-neutral-50: #fcfafa;
-  --color-neutral-100: #f7f1f0;
-  --color-neutral-200: #e9dedd;
-  --color-neutral-300: #d4c1bf;
-  --color-neutral-400: #aa8a86;
-  --color-neutral-500: #7b5c59;
-  --color-neutral-600: #573b38;
-  --color-neutral-700: #3b211e;
-  --color-neutral-800: #2a0c0b;
-  --color-neutral-900: #200101;
+  --color-neutral-50: #fcfcfe;
+  --color-neutral-100: #f7f7fb;
+  --color-neutral-200: #e9e8f1;
+  --color-neutral-300: #d3d2e1;
+  --color-neutral-400: #aba8be;
+  --color-neutral-500: #79758e;
+  --color-neutral-600: #5b576f;
+  --color-neutral-700: #454158;
+  --color-neutral-800: #302d43;
+  --color-neutral-900: #25213b;
 
   --color-semantic-danger: #b41902;
   --color-semantic-warning: #854508;
   --color-semantic-success: #1f6b57;
-  --color-semantic-info: #640e02;
+  --color-semantic-info: #325d9b;
 
   --font-body: 'Avenir Next', 'Manrope', 'Segoe UI', sans-serif;
-  --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+  --font-display: 'Avenir Next', 'Manrope', 'Segoe UI', sans-serif;
   --font-mono: 'SFMono-Regular', 'Cascadia Code', 'Liberation Mono', monospace;
 
   --text-xs: 0.75rem;
@@ -64,14 +76,15 @@
   --space-20: 5rem;
   --space-24: 6rem;
 
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
 
   --duration-instant: 0ms;
   --duration-fast: 120ms;
   --duration-normal: 180ms;
   --duration-slow: 240ms;
+  --duration-decorative: 700ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -85,34 +98,63 @@
   --muted: var(--color-neutral-100);
   --muted-foreground: var(--color-neutral-600);
   --border: var(--color-neutral-200);
+  --border-strong: var(--color-neutral-300);
   --input: var(--color-neutral-300);
-  --primary: var(--color-brand-red-strong);
+  --primary: var(--color-brand-violet);
+  --primary-hover: var(--color-brand-violet-hover);
+  --primary-active: var(--color-brand-violet-active);
   --primary-foreground: var(--color-neutral-white);
   --secondary: var(--color-neutral-100);
   --secondary-foreground: var(--color-neutral-900);
-  --accent: var(--color-accent-glow);
-  --accent-foreground: var(--color-brand-deep);
-  --ring: var(--color-brand-red);
+  --accent: var(--color-brand-pale);
+  --accent-foreground: var(--color-brand-violet);
+  --ring: var(--color-brand-vivid);
   --destructive: var(--color-semantic-danger);
   --destructive-foreground: var(--color-neutral-white);
+  --surface-raised: var(--color-neutral-white);
+  --surface-subtle: var(--color-neutral-50);
+  --foreground-subtle: var(--color-neutral-500);
+  --gradient-brand: linear-gradient(
+    115deg,
+    var(--color-brand-violet),
+    var(--color-brand-vivid) 52%,
+    var(--color-brand-blue)
+  );
+  --gradient-ribbon: linear-gradient(
+    125deg,
+    var(--color-brand-violet),
+    var(--color-brand-lavender) 48%,
+    var(--color-brand-blue)
+  );
+  --gradient-soft: linear-gradient(
+    135deg,
+    var(--color-brand-ice),
+    var(--color-brand-mist)
+  );
 }
 
 [data-theme='dark'] {
   --background: var(--color-neutral-900);
-  --foreground: var(--color-neutral-white);
+  --foreground: var(--color-neutral-50);
   --card: var(--color-neutral-800);
-  --card-foreground: var(--color-neutral-white);
+  --card-foreground: var(--color-neutral-50);
   --muted: var(--color-neutral-700);
   --muted-foreground: var(--color-neutral-300);
   --border: var(--color-neutral-700);
+  --border-strong: var(--color-neutral-600);
   --input: var(--color-neutral-600);
-  --primary: var(--color-accent-ember);
-  --primary-foreground: var(--color-neutral-white);
+  --primary: var(--color-brand-lavender);
+  --primary-hover: var(--color-brand-periwinkle);
+  --primary-active: var(--color-brand-blue);
+  --primary-foreground: var(--color-neutral-900);
   --secondary: var(--color-neutral-800);
-  --secondary-foreground: var(--color-neutral-white);
-  --accent: var(--color-brand-deep);
-  --accent-foreground: var(--color-neutral-white);
-  --ring: var(--color-accent-flame);
+  --secondary-foreground: var(--color-neutral-50);
+  --accent: var(--color-neutral-700);
+  --accent-foreground: var(--color-neutral-50);
+  --ring: var(--color-brand-periwinkle);
   --destructive: var(--color-semantic-danger);
   --destructive-foreground: var(--color-neutral-white);
+  --surface-raised: var(--color-neutral-800);
+  --surface-subtle: var(--color-neutral-900);
+  --foreground-subtle: var(--color-neutral-300);
 }
