@@ -4,8 +4,8 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'UI',
-    template: '%s | UI',
+    default: 'NimJS UI',
+    template: '%s | NimJS UI',
   },
   description:
     'Open-source UI ecosystem with tokens, reusable React components, CLI foundations, and contributor-ready governance.',
