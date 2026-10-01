@@ -1,114 +1,38 @@
-# Contributing To UI
+# Contributing to NimJS UI
 
-Thanks for contributing. This repository is structured to be welcoming to
-external contributors while keeping maintainers confident about API stability and
-release quality.
+Thanks for contributing. Read the [Code of Conduct](CODE_OF_CONDUCT.md) before participating. NimJS UI is pre-release; the [architecture](docs/architecture.md) and [roadmap](docs/roadmap.md) distinguish current behavior from planned work.
 
-## Local Setup
+## Find a task
 
-Requirements:
+Use an issue for a reproducible bug, docs correction, or scoped feature proposal. Include the affected package, reproduction, and expected behavior. Use [Support](SUPPORT.md) for usage questions; report suspected vulnerabilities privately through [Security](SECURITY.md). For a breaking API or cross-package design, explain the use case and proposed contract in an issue or PR before substantial implementation. [Governance](GOVERNANCE.md) describes who decides.
 
-- Node.js 20+
-- pnpm 9+
+## Work locally
 
-Bootstrap the workspace:
+Fork and clone the repository, branch from `main`, and use Node 20.11+ with pnpm 9.15.4. The root package accepts pnpm 9+, but 9.15.4 is pinned for reproducibility.
 
-```bash
+```sh
 pnpm install
 pnpm dev
 ```
 
-Common commands:
+`pnpm dev` starts the docs app. In another terminal, validate your change:
 
-```bash
+```sh
 pnpm lint
-pnpm test
 pnpm typecheck
+pnpm test
 pnpm build
-pnpm changeset
+pnpm verify:consumer
 ```
 
-## Working In The Monorepo
+Run `pnpm turbo run build:pages --filter=@nimjs/docs` when changing Pages behavior. Run a packed external consumer check when changing exports, CSS paths, registry lookup, CLI output, or installation instructions. [Development](docs/development.md) explains each gate and the component checklist. The [consumer cookbook](docs/consumer-setup.md) supplies the current external setup.
 
-- `apps/docs` contains the docs and demo application.
-- `packages/tokens` contains token primitives, semantic themes, and CSS vars.
-- `packages/ui` contains public React components.
-- `packages/utils` contains shared helpers.
-- `packages/cli` contains scaffolding foundations.
+## Make the change
 
-Before opening a pull request, make sure relevant packages pass lint, tests,
-typecheck, and build.
+Canonical component code lives in `packages/ui/src/components`; registry metadata in `packages/registry/components`; tokens and CSS in `packages/tokens/src`; website content in `apps/docs/content`. Keep package and copy mode behavior aligned. Use semantic tokens, explicit exports, native semantics, accessible focus/keyboard/disabled behavior where relevant, and SSR-safe React code. Avoid generated `dist` edits. A new production dependency needs purpose, maintenance/license, bundle, and security/accessibility review; copied components also need the dependency in their registry manifest.
 
-## Adding A Component
+For a component, follow the [cross-package checklist](docs/development.md#add-or-change-a-component). For documentation, update the canonical owner listed in the [docs index](docs/README.md) and check links and example imports. Keep pull requests focused and include the motivation, any public API or architecture effect, and exact validation commands. Descriptive commits are enough; no strict commit format is required.
 
-1. Create a new directory under `packages/ui/src/components/<component>/`.
-2. Keep the component SSR-safe and accessibility-aware by default.
-3. Export it through `packages/ui/src/index.ts` and a dedicated subpath export in
-   `packages/ui/package.json`.
-4. Add or update docs content in `apps/docs/content/` and route coverage in the
-   docs app.
-5. Add tests when behavior, variants, or accessibility rules are non-trivial.
-6. Add a changeset if the new component changes a published package.
+## Changesets and review
 
-## Naming Conventions
-
-- Package names use the `@nimjs/*` scope.
-- Component directories and route slugs use lowercase kebab-case.
-- React component names use PascalCase.
-- Public exports should stay explicit and intentionally curated.
-
-## Branch And PR Expectations
-
-- Branch from `main`.
-- Keep pull requests focused on one concern when practical.
-- Link an issue or explain the motivation clearly in the PR body.
-- Update docs when public behavior changes.
-- Add a changeset for any user-facing package change.
-
-## Commit Expectations
-
-We do not require a strict commit convention for every contributor, but commits
-should still be:
-
-- reviewable
-- scoped
-- descriptive
-
-Squash merges are acceptable when they produce a clean history.
-
-## Review Expectations
-
-- Maintainers review for correctness, API design, docs impact, and release
-  implications.
-- Large architectural changes may be redirected into an RFC-like discussion
-  before merge.
-- Review SLA is best effort and depends on maintainer availability.
-
-## Public API And Compatibility Policy
-
-- Do not break public API without explicit maintainer approval.
-- Do not remove or rename exports in published packages casually.
-- Prefer additive evolution over implicit behavior changes.
-- Breaking changes require documentation updates and a clearly marked changeset.
-
-Backwards compatibility matters even during `0.x` development. If a change would
-surprise downstream users, surface it early and treat it as a deliberate design
-decision rather than a refactor detail.
-
-## Changesets
-
-Run:
-
-```bash
-pnpm changeset
-```
-
-Add a changeset when a change affects consumers of a published package. Docs-only
-changes usually do not need one unless they reflect a shipped package change that
-also needs release notes.
-
-## Security And Secrets
-
-- Do not commit secrets, tokens, or private credentials.
-- Do not open public issues for suspected vulnerabilities.
-- Follow [SECURITY.md](./SECURITY.md) for vulnerability reporting.
+Run `pnpm changeset` for user-facing package changes, including registry status, CLI behavior, public exports, CSS/token changes, and component behavior. Docs-only edits normally do not need one. A breaking change needs an explicit changeset and migration note under [Governance](GOVERNANCE.md). Maintainers review correctness, public contract, tests, docs, and release impact. Review timing is best effort. Contributions are submitted under the repository's [MIT License](LICENSE); do not include third-party code without compatible rights and attribution.
