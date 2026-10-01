@@ -1,47 +1,31 @@
-# UI roadmap
+# Roadmap
 
-## 0. Make the current promise accurate
+This file tracks intended outcomes, not shipped capability. Current behavior and invariants are in [architecture](architecture.md); current setup is in [consumer setup](consumer-setup.md). No date or release commitment is implied.
 
-- Keep README and docs explicit about four current components and incomplete
-  external copy-mode setup.
-- Add an example consumer app outside the workspace dependency graph.
-- Record package-mode and copy-mode setup steps from a clean install.
+## External consumer baseline
 
-**Done when:** a new user can tell what works today without reading source.
+- Run package and copy mode from clean React 19 / Tailwind 3 projects outside the workspace, using packed artifacts.
+- Extend the existing `pnpm verify:consumer` packed Button fixture to every release candidate component and supported setup.
+- Reconcile any gaps between canonical source, registry metadata, CLI assets, and website examples.
 
-## 1. Complete one component end to end
+**Done when:** a new consumer can follow the documented commands without workspace aliases or undocumented repairs.
 
-- Choose Button as the first reference component.
-- Make registry metadata complete enough for its files, npm dependencies,
-  utility import, tokens, and destination path.
-- Make CLI installation deterministic and safe on repeated runs.
-- Compare package and copied versions in consumer tests.
+## Component and theme quality
 
-**Done when:** `ui add button` produces a working button in a clean supported
-React project using only documented commands.
+- Exercise interactive components for keyboard behavior, focus, disabled state, and accessible naming; keep registry status at `preview` until acceptance criteria are met.
+- Validate the existing dark CSS selector in real consumer pages before documenting dark mode as supported.
+- Add component coverage by complete vertical slice: source, exports, registry, package and copy use, tests, and docs.
 
-## 2. Reliable design system baseline
+**Done when:** each promoted component meets the [component acceptance criteria](architecture.md#component-acceptance) in both modes.
 
-- Add a documented dark theme and verify semantic token coverage.
-- Test interactive components for keyboard, focus, and disabled behavior.
-- Keep generated CLI assets in parity with canonical source as components evolve.
-- Publish component status and compatibility notes in docs.
+## First public release
 
-**Done when:** each stable component meets the acceptance criteria in
-`docs/architecture.md` in both usage modes.
+- Verify packed files, exports, CSS, types, CLI executable, and release credentials.
+- Confirm npm scope ownership and public package names; review the [first release checklist](releases.md#first-public-release-checklist).
+- Publish reviewed versions and release notes through Changesets.
 
-## 3. First release and broader catalog
+**Done when:** public install commands work for all intended packages and the release is traceable to reviewed changesets.
 
-- Verify packed package exports, CSS paths, CLI executable, versioning, and
-  release credentials in a dry-run environment.
-- Publish first versions and a migration policy.
-- Add high-demand components based on use cases, one vertical slice at a time.
+## Later candidates
 
-**Done when:** an external project can install from the published packages and
-from the copy-mode CLI without workspace-only imports.
-
-## Later
-
-Remote registry distribution, namespaces, blocks, more framework adapters,
-and design-tool integrations should follow a working local registry and real
-consumer demand.
+Remote registries, additional framework adapters, broader component patterns, and release automation need a separate design decision after the local paths work. They are not current CLI capabilities.
