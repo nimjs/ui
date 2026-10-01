@@ -13,6 +13,7 @@ export interface CodeBlockContent {
 export interface DocSection {
   title: string;
   paragraphs: string[];
+  link?: { href: string; label: string };
   list?: string[];
   codeBlocks?: CodeBlockContent[];
 }

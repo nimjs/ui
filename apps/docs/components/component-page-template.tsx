@@ -97,7 +97,7 @@ export function ComponentPageTemplate({ page }: { page: ComponentPage }) {
               Status: {manifest.status}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Since: {manifest.since}
+              Version marker: {manifest.since} (unreleased)
             </p>
           </MetadataCard>
           <MetadataCard title="Files">

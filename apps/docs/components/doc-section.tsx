@@ -11,6 +11,14 @@ export function DocSection({ section }: { section: DocSectionContent }) {
           {paragraph}
         </p>
       ))}
+      {section.link ? (
+        <a
+          className="text-primary underline underline-offset-4"
+          href={section.link.href}
+        >
+          {section.link.label}
+        </a>
+      ) : null}
       {section.list ? (
         <ul className="doc-list">
           {section.list.map((item) => (

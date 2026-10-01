@@ -24,7 +24,7 @@ export const themingPage: DocPage = {
     {
       title: 'Foundation scales',
       paragraphs: [
-        'The theme exports reusable typography, spacing, and motion scales so component work does not invent one-off values as the library grows.',
+        'The tokens package exports reusable typography, spacing, and motion scales so component work does not invent one-off values as the library grows.',
         'Those scales are also exposed as CSS variables, which lets Tailwind configuration, package CSS, and consumer apps reference the same contract.',
       ],
       codeBlocks: [
@@ -42,8 +42,8 @@ export const themingPage: DocPage = {
       ],
       list: [
         'Shared semantic color roles across docs and components',
-        'Light theme is fully implemented',
-        'Dark theme hook points are present through data-theme selectors',
+        'A light theme is provided; external consumer validation is still in progress',
+        'A dark selector exists in CSS; supported dark mode is not yet validated',
       ],
     },
     {
@@ -68,7 +68,7 @@ export const themingPage: DocPage = {
         {
           label: 'Pipeline',
           language: 'bash',
-          code: `registry -> docs meta -> design tokens -> CSS variables -> @nimjs/ui -> docs and consumer apps`,
+          code: `primitive tokens -> semantic CSS variables -> @nimjs/ui -> package and copy consumers; registry metadata -> docs and CLI`,
         },
       ],
     },

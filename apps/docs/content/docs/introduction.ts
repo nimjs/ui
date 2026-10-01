@@ -4,7 +4,7 @@ export const introductionPage: DocPage = {
   slug: 'introduction',
   title: 'Introduction',
   description:
-    'UI is a monorepo-oriented UI ecosystem that keeps design tokens, React components, docs, and future CLI workflows aligned from the beginning.',
+    'NimJS UI is an early-stage React component ecosystem that keeps design tokens, React components, docs, and a local CLI workflow aligned from the beginning.',
   eyebrow: 'Getting Started',
   sections: [
     {
@@ -17,7 +17,7 @@ export const introductionPage: DocPage = {
     {
       title: 'What ships today',
       paragraphs: [
-        'The baseline includes a tokens package, shared utilities, a React UI package, a CLI foundation for future init and add workflows, and a Next.js docs app that demonstrates the full path from tokens to components.',
+        'The repository includes token and utility packages, preview React components, local init and add commands, and a Next.js documentation app. The packages are not publicly released; external testing uses packed artifacts.',
       ],
       list: [
         'pnpm workspace + Turborepo orchestration',
@@ -35,7 +35,7 @@ export const introductionPage: DocPage = {
         {
           label: 'Repository structure',
           language: 'bash',
-          code: `apps/docs\npackages/ui\npackages/tokens\npackages/utils\npackages/cli\npackages/eslint-config\npackages/tsconfig\n.github\n.changeset`,
+          code: `apps/docs\npackages/ui\npackages/tokens\npackages/utils\npackages/registry\npackages/cli\npackages/eslint-config\npackages/tsconfig\n.github\n.changeset`,
         },
       ],
     },
