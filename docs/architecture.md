@@ -96,8 +96,10 @@ dependency when justified; document that choice in the manifest and docs.
 
 ## Release boundary
 
-`changesets`, CI, docs builds, CodeQL, and release workflows already exist.
-Their presence does not establish that a first consumer installation works.
+`changesets`, CI, docs builds, and CodeQL already exist. Automated release
+publication is disabled. These tools do not establish that a first consumer
+installation works.
+
 Before publishing, validate packed package contents, package exports, CSS
 imports, CLI binary behavior, and both usage paths in clean external fixtures.
 

@@ -248,12 +248,15 @@ This is the same baseline validated by the main CI workflow.
 
 ## Release Flow
 
-Releases are managed with Changesets.
+Changesets record release intent. Automated release PR creation and npm
+publication are currently disabled.
 
 1. Contributors add a changeset for user-facing package changes.
 2. Changes land on `main`.
-3. The release workflow creates or updates a release PR.
-4. Merging the release PR versions packages and publishes to npm.
+3. A maintainer reviews the changesets and runs `pnpm version-packages` when a
+   release is ready.
+4. An authorized maintainer runs `pnpm release` after the consumer and package
+   checks in the roadmap pass.
 
 Before the very first publish, make sure the npm scope exists and provide an
 automation token as `NPM_TOKEN`. npm trusted publishing can take over after the
@@ -264,7 +267,7 @@ Why this model works well for OSS:
 
 - release intent is reviewed in git
 - breaking changes stay explicit
-- maintainers avoid ad hoc local publishing
+- maintainers use reviewed changesets and the repository release scripts
 - multi-package versioning stays understandable to contributors
 
 ### Canary Releases
@@ -287,7 +290,6 @@ GitHub Actions cover:
 
 - repository validation
 - docs build validation
-- release automation
 - dependency review
 - CodeQL analysis
 

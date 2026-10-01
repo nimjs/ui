@@ -50,11 +50,12 @@ change is mechanically small.
 
 ## Release Authority
 
-Only maintainers with release permissions should publish packages or merge the
-automated release PR.
+Only maintainers with release permissions should publish packages or approve
+release version changes.
 
-Release publication should happen through the repository workflow rather than
-through ad hoc local publish commands whenever possible.
+The automated release workflow is currently disabled. Until it is restored,
+maintainers should review changesets and consumer checks, then use the
+repository's `version-packages` and `release` scripts for publication.
 
 ## Review SLA
 
