@@ -1,111 +1,97 @@
-# UI architecture
+# Architecture
 
-This document separates the **current foundation** from the **target product**.
-See `README.md` for setup and the package map.
+NimJS UI is a React design system foundation with two intended consumer paths. This document records the current implementation and rules for changing it. Planned work lives in the [roadmap](roadmap.md); setup commands live in [consumer setup](consumer-setup.md).
 
-## Product contract
+## Product boundary
 
-UI serves React applications in two ways:
+Package mode imports versioned React components and token CSS from package exports. Copy mode runs the local CLI to place source in an application; the application owns that source after copying. A package upgrade does not update copied files. Both paths are meant to preserve observable component behavior and semantics. Neither path is publicly released yet. NimJS UI is not an application framework, a backend framework, or a remote code execution registry.
 
-1. **Package mode:** import versioned components from `@nimjs/ui` and tokens
-   from `@nimjs/tokens`.
-2. **Copy mode:** run the CLI to put reviewed component source into the user's
-   repository, where the user owns later edits.
+## Repository and dependency direction
 
-Both modes must have equivalent visible behavior, accessibility semantics,
-token usage, and documented examples. They may differ in import paths and
-dependency installation. Copy mode is currently a foundation, not a complete
-external-project installation experience.
-
-## Source of truth
+| Location                                      | Responsibility                                    | Direct workspace consumers            |
+| --------------------------------------------- | ------------------------------------------------- | ------------------------------------- |
+| `packages/tokens`                             | Token scales, light theme mapping, CSS variables  | UI, docs                              |
+| `packages/utils`                              | Small class and DOM helpers                       | UI, docs                              |
+| `packages/ui`                                 | Canonical React source and explicit exports       | docs; CLI copies source at build time |
+| `packages/registry`                           | Versioned local manifests and typed loader        | CLI, docs                             |
+| `packages/cli`                                | Config, local install plan, bundled source assets | external consumer                     |
+| `apps/docs`                                   | Next.js website, demos, typed content             | users                                 |
+| `packages/eslint-config`, `packages/tsconfig` | Internal workspace tooling                        | workspace packages                    |
 
 ```text
-tokens/theme CSS
-       |
-       v
-canonical component source in packages/ui
-       |                 |
-       v                 v
-registry manifests --> docs metadata
-       |
-       v
-CLI installation plan --> copied source in consumer project
+tokens ─┐
+utils ──┴──> ui ───────────────> docs
+registry ───> cli
+         └────────────────────> docs
+ui source ──(CLI build copy)──> cli assets ──> consumer files
 ```
 
-`packages/ui/src/components` is the canonical implementation. Registry
-manifests describe component files, dependencies, tokens, status, and docs
-metadata. The CLI includes canonical source files at build time and changes
-only the utility import when installing them. A parity test compares the
-installed Button against canonical source. The CLI build fails if a manifest
-references a missing component file.
+`@nimjs/ui` declares tokens and utils as dependencies. Its component source directly imports `@nimjs/utils`; semantic CSS classes rely on the consumer's Tailwind mapping and token stylesheet. The CLI depends on registry at runtime, and its build script reads UI source, `cn.ts`, and token CSS. That build-time relation does not make UI a runtime CLI dependency. The docs app uses workspace packages and typed content.
 
-## Existing package boundaries
+## Sources of truth
 
-| Location                                      | Responsibility                                     |
-| --------------------------------------------- | -------------------------------------------------- |
-| `packages/tokens`                             | Design scales, semantic CSS variables, themes      |
-| `packages/ui`                                 | React components and explicit package exports      |
-| `packages/utils`                              | Small shared helpers used by package components    |
-| `packages/registry`                           | Typed component manifests consumed by docs and CLI |
-| `packages/cli`                                | Local config, component lookup, scaffolding        |
-| `apps/docs`                                   | Getting started, examples, component documentation |
-| `packages/eslint-config`, `packages/tsconfig` | Repository tooling                                 |
+| Contract                        | Edit here                                                      | Derived or parallel surface to check          |
+| ------------------------------- | -------------------------------------------------------------- | --------------------------------------------- |
+| Component behavior              | `packages/ui/src/components/`                                  | CLI bundled assets, tests, docs examples      |
+| Component metadata and maturity | `packages/registry/components/*.json`                          | CLI listings, docs pages                      |
+| Token values and theme CSS      | `packages/tokens/src/`                                         | docs Tailwind mapping, copied CSS             |
+| Public JavaScript and CSS paths | each package's `package.json` `exports` plus source index      | package READMEs, consumer fixture             |
+| CLI commands and templates      | `packages/cli/src/` and `packages/cli/scripts/copy-assets.mjs` | CLI README, consumer setup                    |
+| Website component content       | `apps/docs/content/`                                           | rendered routes                               |
+| Architecture and future work    | this file; `roadmap.md`                                        | README summary                                |
+| Release intent                  | `.changeset/`                                                  | generated package changelogs after versioning |
 
-The published package path and copy path should remain independently usable.
-No runtime dependency on the separate `nimjs` project is planned.
+Registry JSON does not contain component implementation. Website pages are authored in TypeScript and reference registry entries; metadata is not generated from source. These surfaces need coordinated review when behavior changes.
 
-## Registry and CLI target
+## Package mode
 
-The versioned manifest now lists source files, internal system dependencies,
-and npm dependencies. A future version still needs, for each item:
+`@nimjs/ui` exports its root, `button`, `input`, `card`, `badge`, and `styles.css`. Root exports are explicit. `@nimjs/tokens` exports its root and `styles.css`; registry and utils export their roots. `@nimjs/cli` supplies the `ui` executable. ESLint config, TS config, and docs are private workspace packages. React and React DOM `^19.0.0` are UI peers; the documented styling path uses Tailwind CSS 3. No npm publication has been verified. Consumers currently need packed artifacts and the setup in [consumer setup](consumer-setup.md).
 
-- source files and destination paths;
-- peer requirements;
-- component dependencies and install order;
-- CSS/token requirements;
-- import aliases and transformations;
-- richer schema validation errors.
+`@nimjs/ui/styles.css` imports the token stylesheet; consumers may import `@nimjs/tokens/styles.css` directly. Import one token stylesheet once, and configure Tailwind to scan the distributed UI JavaScript and map semantic class names to CSS variables. No compiled component CSS is shipped.
 
-The CLI should resolve the whole dependency graph, show a file and package plan,
-check collisions, then write files and update dependencies. Validate every path
-against the chosen project root. Prefer an inspectable plan and explicit
-overwrite choice; do not execute remote registry scripts. A dry run is a useful
-first step toward safe installation.
+## Copy mode and CLI safety
 
-The current `ui add` command plans all files before writing, rejects collisions
-and paths outside the project, and can show its plan with `--dry-run`. It copies
-the shared `cn` helper and token CSS locally. It does not install npm packages,
-import token CSS into the application, or configure Tailwind. Documentation
-must keep those manual steps visible until the CLI handles them.
+The CLI has `ui init` and `ui add <component> [--dry-run]`. `init` creates `ui.config.ts` if absent. `add` loads local registry metadata, reads its bundled canonical assets, and plans component files plus `_lib/cn.ts` and `_lib/tokens.css` when required. It adjusts the `@nimjs/utils` import to the copied helper. The manifest's `npmDependencies` are reported, not installed. The CLI does not configure Tailwind or import CSS into the application.
 
-## Component acceptance criteria
+`add` rejects unknown names, absolute or escaping `componentsDir`, symbolic links along output paths, and existing files with different content. It skips identical files. `--dry-run` prints a plan without writing. The current planner reports transitive component dependencies, but copies only the requested manifest's files; manifests currently have no component-to-component dependencies. A future dependency graph installer needs its own design and tests. Config files are loaded with `jiti`, so a consumer config is executable local code; do not treat it as untrusted data.
 
-Before a new component is called stable, require:
+There is no remote registry fetch or remote script execution. The CLI build snapshots source into its package artifact; rebuilding the CLI is required after canonical source changes.
 
-- a documented use case and a small public prop surface;
-- keyboard and screen-reader behavior appropriate to its semantics;
-- focus and disabled states, including tests for interactive components;
-- support for semantic theme variables rather than raw visual literals;
-- a package-mode import and a copy-mode installation fixture;
-- docs with a live example, code example, and dependency list;
-- a changeset for a published package change.
+## Registry contract
 
-Prefer a smaller catalog with trustworthy behavior to broad coverage by
-unreviewed wrappers. Complex primitives may use an accessibility-focused
-dependency when justified; document that choice in the manifest and docs.
+Manifests live in `packages/registry/components/*.json`, use `schemaVersion: 1`, and are exposed through the registry root loader. Current fields: `name`, `files`, `dependencies`, `npmDependencies`, `tokens`, `category`, `status`, `since`, `description`, `anatomy`, `accessibility`, and `usage`. The runtime loader checks names, enums, and field shapes; the CLI build checks source paths exist and match its filename rule. The registry is local metadata, not a remote distribution protocol. Destination directories are determined by CLI config plus manifest name. Schema additions that affect output require registry, CLI, docs, tests, and migration review.
 
-## Release boundary
+The status vocabulary in code is `experimental`, `preview`, and `stable`. Current components are `preview`; this reflects incomplete external validation, not a claim that they have no usable behavior. Promotion to `stable` requires the acceptance gate below. There is no `deprecated` registry status today; deprecation must be documented in API docs and release notes until a schema decision adds one.
 
-`changesets`, CI, docs builds, and CodeQL already exist. Automated release
-publication is disabled. These tools do not establish that a first consumer
-installation works.
+## Tokens and themes
 
-Before publishing, validate packed package contents, package exports, CSS
-imports, CLI binary behavior, and both usage paths in clean external fixtures.
+TypeScript primitives and light theme mappings live in `packages/tokens/src/`; `src/css/variables.css` is the stylesheet used by apps and copied installations. Primitive colors feed semantic variables such as `--background`, `--foreground`, `--primary`, `--primary-foreground`, `--border`, and `--ring`. Components use semantic Tailwind keys and radius variables. A missing stylesheet or missing Tailwind mapping leaves component styling incomplete. The CSS includes a `[data-theme='dark']` selector, but dark behavior is not yet a validated consumer contract. A new token should have a clear role, be mapped in CSS and Tailwind examples where needed, and be reflected in registry metadata and docs. Existing primitive names remain exported; removal is an API decision.
 
-## References
+## Public API and compatibility
 
-- [shadcn/ui registry guide](https://ui.shadcn.com/docs/registry): reference for
-  user-owned code distribution, not a source of code to copy into this project.
-- [shadcn/ui registry item format](https://ui.shadcn.com/docs/registry/registry-item-json):
-  useful comparison when evolving NimJS manifests.
+The public contract is the explicit `exports` map, documented CSS paths, component props, token names used by consumers, CLI commands and flags, and the registry root API/schema. Internal `src/` and `dist/` paths, workspace aliases, tests, and generated assets are implementation details. Do not add wildcard exports or promise deep imports. Changes to public paths need consumer validation, documentation, and a changeset. Breaking changes follow [governance](../GOVERNANCE.md) and [release policy](releases.md), including migration guidance, even before 1.0.
+
+The root requires Node 20.11+ and pins pnpm 9.15.4; only the Node 20 major is selected in CI. UI declares React/React DOM 19 peers. The documented stylesheet integration targets Tailwind 3. No browser matrix, Next.js compatibility matrix, or general WCAG conformance claim has been established.
+
+## Component acceptance
+
+For an interactive component, review native semantics, keyboard use, focus visibility, disabled behavior, and accessible naming. Use native props and refs where appropriate, SSR-safe rendering, semantic tokens, typed exports, behavior tests, registry metadata, website examples, package and copy consumer checks, and a changeset for a user-facing package change. A presentational component needs an appropriate subset. Existing tests cover Button and Input behavior and registry/CLI helpers; they are not a full accessibility audit.
+
+## Validation and maintenance
+
+`pnpm lint`, `pnpm typecheck`, `pnpm test`, and `pnpm build` run workspace gates. CI also runs `pnpm verify:consumer`, which packs artifacts and checks Button in two temporary projects outside the workspace. A separate docs workflow builds the website; Pages workflow builds a static export. The Button fixture does not validate every component or framework. The release script has a preflight and Changesets publish step, but automated publication is disabled. Details and first release checks are in [releases](releases.md).
+
+Security boundaries are CLI filesystem writes, executable local config, generated source that consumers own, npm dependencies selected by consumers, GitHub Actions permissions, and release credentials. The current CLI neither downloads nor executes registry code. Vulnerabilities use the private route in [Security](../SECURITY.md).
+
+## Invariants for changes
+
+1. Edit canonical components in `packages/ui/src/components`; rebuild CLI assets instead of hand-editing `dist`.
+2. Keep registry metadata and website examples aligned with canonical behavior.
+3. Keep package exports explicit and component rendering SSR-safe.
+4. Use semantic tokens in components; maintain CSS and Tailwind mappings for consumer examples.
+5. Preserve the CLI's project-root, symlink, collision, and dry-run safeguards.
+6. Keep package and copied component behavior equivalent, allowing only import-path adaptation.
+7. Do not rely on repository-only aliases in consumer files.
+8. Update docs, tests, and changesets with public changes; do not call future capability implemented.
+
+A cross-package decision should include a short rationale in the PR or issue under [governance](../GOVERNANCE.md). This repository does not require an ADR for routine changes. Record a durable decision in `docs/adr/` only when the rationale would otherwise be lost.
