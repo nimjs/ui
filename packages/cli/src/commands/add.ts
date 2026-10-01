@@ -1,6 +1,5 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, relative } from 'node:path';
 
 import type { RegistryComponentName } from '@nimjs/registry';
 
@@ -13,22 +12,13 @@ import {
   resolveRegistryDependencies,
 } from '../registry/loader';
 
-function resolveTemplateRoot() {
-  const currentFile = fileURLToPath(import.meta.url);
-  const distTemplates = join(dirname(currentFile), '..', 'templates');
+import { createAddPlan } from './add-plan';
 
-  if (existsSync(distTemplates)) {
-    return distTemplates;
-  }
-
-  return join(dirname(currentFile), '..', '..', 'src', 'templates');
-}
-
-function renderTemplate(templatePath: string) {
-  return readFileSync(templatePath, 'utf8');
-}
-
-export async function runAdd(cwd: string, componentName?: string) {
+export async function runAdd(
+  cwd: string,
+  componentName?: string,
+  options: { dryRun?: boolean } = {},
+) {
   if (!componentName) {
     error('Missing component name. Example: ui add button');
     process.exitCode = 1;
@@ -53,53 +43,46 @@ export async function runAdd(cwd: string, componentName?: string) {
     componentName as RegistryComponentName,
   );
   const config = await resolveConfig(cwd);
-  const outputDir = join(cwd, config.componentsDir, componentName);
-  const templateRoot = resolveTemplateRoot();
-
-  mkdirSync(outputDir, { recursive: true });
-
-  for (const fileName of manifest.files) {
-    const templatePath = join(
-      templateRoot,
-      manifest.name,
-      `${fileName}.template`,
-    );
-    const destinationPath = join(outputDir, fileName);
-
-    if (!existsSync(templatePath)) {
-      error(`Template not found for ${componentName}: ${templatePath}`);
-      process.exitCode = 1;
-      return;
-    }
-
-    if (existsSync(destinationPath)) {
-      error(`File already exists, refusing to overwrite: ${destinationPath}`);
-      process.exitCode = 1;
-      return;
-    }
-
-    const renderedTemplate = renderTemplate(templatePath);
-    writeFileSync(destinationPath, renderedTemplate, 'utf8');
-    log(`Created ${destinationPath}`);
-  }
-
+  const plan = createAddPlan(cwd, manifest, config);
   const summary = describeRegistryComponent(manifest, resolvedDependencies);
 
-  log(`Added ${componentName} from the local registry.`);
-  log(`Status: ${summary.status}`);
-  log(`Files: ${summary.files}`);
+  log(
+    options.dryRun ? `Plan for ${componentName}:` : `Adding ${componentName}:`,
+  );
+  for (const file of plan.files) {
+    log(`  ${file.action}: ${relative(plan.projectRoot, file.destination)}`);
+  }
+  log(`npm dependencies: ${plan.npmDependencies.join(', ') || 'none'}`);
   log(`Registry dependencies: ${summary.dependencies}`);
   log(`Tokens: ${summary.tokens}`);
 
-  if (!config.configPath) {
-    log(
-      'No ui.config.ts found. Using default output directory "src/components/ui".',
-    );
+  if (options.dryRun) {
+    return;
+  }
+
+  for (const file of plan.files) {
+    if (file.action === 'create') {
+      mkdirSync(dirname(file.destination), { recursive: true });
+      writeFileSync(file.destination, file.content, { flag: 'wx' });
+    }
+  }
+
+  log(
+    plan.files.some((file) => file.action === 'create')
+      ? `Added ${componentName} from the local registry.`
+      : `${componentName} is already up to date.`,
+  );
+  log(
+    'Next: install the listed npm dependencies and configure Tailwind semantic colors.',
+  );
+
+  if (config.tokens && manifest.dependencies.includes('tokens')) {
+    log('Import _lib/tokens.css once in your application stylesheet.');
   }
 
   if (!config.tokens && manifest.dependencies.includes('tokens')) {
     log(
-      'Warning: this component expects semantic CSS variables from @nimjs/tokens, but config.tokens is false.',
+      'Warning: tokens are disabled; provide the semantic CSS variables yourself.',
     );
   }
 }

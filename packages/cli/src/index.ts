@@ -11,7 +11,9 @@ function printHelp() {
   log('');
   log('Commands:');
   log('  init              Create a ui.config.ts file');
-  log('  add <component>   Scaffold a component from the local registry');
+  log(
+    '  add <component> [--dry-run]   Add canonical component source from the local registry',
+  );
 }
 
 function main() {
@@ -23,16 +25,21 @@ function main() {
       runInit(workingDirectory);
       return;
     case 'add':
-      void runAdd(workingDirectory, parsed.positional[0]).catch(
-        (cause: unknown) => {
-          error(
-            cause instanceof Error
-              ? cause.message
-              : 'Unexpected error while adding component.',
-          );
-          process.exitCode = 1;
-        },
-      );
+      if ('dry-run' in parsed.flags && parsed.flags['dry-run'] !== true) {
+        error('--dry-run does not take a value.');
+        process.exitCode = 1;
+        return;
+      }
+      void runAdd(workingDirectory, parsed.positional[0], {
+        dryRun: parsed.flags['dry-run'] === true,
+      }).catch((cause: unknown) => {
+        error(
+          cause instanceof Error
+            ? cause.message
+            : 'Unexpected error while adding component.',
+        );
+        process.exitCode = 1;
+      });
       return;
     case '--help':
     case '-h':

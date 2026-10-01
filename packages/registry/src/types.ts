@@ -52,9 +52,11 @@ export interface RegistryUsagePattern {
 }
 
 export interface RegistryComponentManifest {
+  schemaVersion?: 1;
   name: RegistryComponentName;
   files: string[];
   dependencies: RegistryDependency[];
+  npmDependencies?: string[];
   tokens: RegistryTokenReference[];
   category: RegistryCategory;
   status: RegistryStatus;

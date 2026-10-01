@@ -1,7 +1,9 @@
 {
+  "schemaVersion": 1,
   "name": "input",
   "files": ["input.tsx"],
   "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
   "tokens": [
     "background",
     "foreground",

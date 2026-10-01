@@ -17,7 +17,6 @@
   },
   "files": [
     "dist",
-    "src/templates",
     "README.md"
   ],
   "bin": {
@@ -33,11 +32,11 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --dts --format esm --target node20 --clean",
+    "build": "tsup src/index.ts --dts --format esm --target node20 --clean && node scripts/copy-assets.mjs",
     "clean": "rm -rf dist coverage",
-    "dev": "tsup src/index.ts --dts --format esm --target node20 --watch",
+    "dev": "node scripts/copy-assets.mjs && tsup src/index.ts --dts --format esm --target node20 --watch",
     "lint": "eslint src --ext .ts",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run",
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {

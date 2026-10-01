@@ -22,6 +22,6 @@ export function runInit(cwd: string) {
 
   log(`Created ${CONFIG_FILE_NAME}`);
   log('Next steps:');
-  log('1. Adjust aliases and Tailwind paths to match your app.');
-  log('2. Run `ui add button` to scaffold a first component template.');
+  log('1. Run `ui add button --dry-run` to inspect the file plan.');
+  log('2. Run `ui add button`, then follow the copy-mode setup guide.');
 }

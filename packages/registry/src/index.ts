@@ -134,6 +134,10 @@ function parseManifest(raw: unknown): RegistryComponentManifest {
 
   assertStringArray(`${manifest.name}.files`, manifest.files);
   assertStringArray(`${manifest.name}.dependencies`, manifest.dependencies);
+  assertStringArray(
+    `${manifest.name}.npmDependencies`,
+    manifest.npmDependencies,
+  );
   assertStringArray(`${manifest.name}.tokens`, manifest.tokens);
   assertStringArray(`${manifest.name}.accessibility`, manifest.accessibility);
   assertNamedDescriptions<RegistryAnatomyItem>(
@@ -161,6 +165,33 @@ function parseManifest(raw: unknown): RegistryComponentManifest {
 
   assertString(`${manifest.name}.since`, manifest.since);
   assertString(`${manifest.name}.description`, manifest.description);
+
+  if (manifest.schemaVersion !== 1) {
+    throw new Error(
+      `Unsupported registry schema version for "${manifest.name}".`,
+    );
+  }
+
+  if (
+    manifest.files.length === 0 ||
+    new Set(manifest.files).size !== manifest.files.length ||
+    manifest.files.some((file) => !/^[a-z][a-z0-9-]*\.tsx$/.test(file))
+  ) {
+    throw new Error(
+      `Registry manifest "${manifest.name}" has unsafe source files.`,
+    );
+  }
+
+  if (
+    manifest.npmDependencies.some(
+      (dependency) =>
+        !/^(?:@[a-z0-9-]+\/[a-z0-9-]+|[a-z0-9-]+)$/.test(dependency),
+    )
+  ) {
+    throw new Error(
+      `Registry manifest "${manifest.name}" has invalid npm dependencies.`,
+    );
+  }
 
   const invalidDependencies = findInvalidEntries(
     manifest.dependencies,
@@ -200,6 +231,7 @@ function parseManifest(raw: unknown): RegistryComponentManifest {
   }
 
   return {
+    schemaVersion: manifest.schemaVersion,
     accessibility: manifest.accessibility,
     anatomy: manifest.anatomy,
     category: manifest.category,
@@ -207,6 +239,7 @@ function parseManifest(raw: unknown): RegistryComponentManifest {
     description: manifest.description,
     files: manifest.files,
     name: manifest.name,
+    npmDependencies: manifest.npmDependencies,
     since: manifest.since,
     status: manifest.status,
     tokens: manifest.tokens,

@@ -1,8 +1,12 @@
 {
+  "schemaVersion": 1,
   "name": "badge",
   "files": ["badge.tsx"],
   "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
   "tokens": [
+    "background",
+    "foreground",
     "primary",
     "primary-foreground",
     "secondary",

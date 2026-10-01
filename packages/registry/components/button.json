@@ -1,14 +1,22 @@
 {
+  "schemaVersion": 1,
   "name": "button",
   "files": ["button.tsx"],
   "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
   "tokens": [
+    "background",
+    "foreground",
+    "muted",
     "primary",
     "primary-foreground",
     "radius",
     "ring",
     "secondary",
-    "border"
+    "secondary-foreground",
+    "border",
+    "destructive",
+    "destructive-foreground"
   ],
   "category": "ui",
   "status": "stable",

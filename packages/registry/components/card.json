@@ -1,15 +1,10 @@
 {
+  "schemaVersion": 1,
   "name": "card",
   "files": ["card.tsx"],
   "dependencies": ["utils", "tokens"],
-  "tokens": [
-    "background",
-    "card",
-    "card-foreground",
-    "border",
-    "muted-foreground",
-    "radius"
-  ],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["card", "card-foreground", "border", "muted-foreground", "radius"],
   "category": "ui",
   "status": "stable",
   "since": "0.0.0",
