@@ -4,8 +4,8 @@ This file tracks intended outcomes, not shipped capability. Current behavior and
 
 ## External consumer baseline
 
-- Run package and copy mode from clean React 19 / Tailwind 3 projects outside the workspace, using packed artifacts.
-- Extend the existing `pnpm verify:consumer` packed Button fixture to every release candidate component and supported setup.
+- Keep package and copy mode working in clean React 19 / Tailwind 3 Vite projects outside the workspace, using packed artifacts. The current gate covers Button, Input, Card, and Badge.
+- Add other frameworks or setup variants only when they become supported targets. Browser interaction parity remains to be validated beyond current component unit tests and server-rendered markup checks.
 - Reconcile any gaps between canonical source, registry metadata, CLI assets, and website examples.
 
 **Done when:** a new consumer can follow the documented commands without workspace aliases or undocumented repairs.
@@ -20,7 +20,7 @@ This file tracks intended outcomes, not shipped capability. Current behavior and
 
 ## First public release
 
-- Verify packed files, exports, CSS, types, CLI executable, and release credentials.
+- Review the automated packed file, export, CSS, type, and CLI checks against each intended public release artifact; verify release credentials separately.
 - Confirm npm scope ownership and public package names; review the [first release checklist](releases.md#first-public-release-checklist).
 - Publish reviewed versions and release notes through Changesets.
 

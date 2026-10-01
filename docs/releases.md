@@ -29,9 +29,9 @@ For deprecation, document the replacement and intended removal release in API do
 
 - [ ] Confirm npm `@nimjs` scope ownership and publish permissions for every intended public package.
 - [ ] Review package names, versions, `exports`, peer dependencies, license, repository links, and README content.
-- [ ] Run lint, typecheck, tests, package and docs builds, and Pages static export.
-- [ ] Pack every publishable package; inspect files, types, CSS, CLI executable, LICENSE, and dependency resolution.
-- [ ] Run `pnpm verify:consumer` and extend the packed external checks to every component intended for release.
+- [ ] Run `pnpm verify` for lint, typecheck, tests, builds, registry validation, packed consumers, and Pages static export.
+- [ ] Review each packed package's files, types, CSS, CLI executable, LICENSE, and dependency resolution. The automated gate checks declared paths and excludes tests and fixtures; CLI assets intentionally include canonical component source.
+- [ ] Confirm the React 19 / Tailwind 3 Vite package and copy checks cover every component intended for release; review browser interaction separately.
 - [ ] Confirm the website URL and component links, private vulnerability reporting route, and support links.
 - [ ] Review Changesets, version output, migration notes, and package changelogs.
 - [ ] Verify release credentials or trusted publisher configuration outside git; restrict publishing to authorized maintainers.
