@@ -125,4 +125,19 @@ describe('add plan', () => {
       'symbolic link',
     );
   });
+
+  it('rejects component dependencies until the CLI can copy them', () => {
+    const project = temporaryProject();
+    expect(() =>
+      createAddPlan(
+        project,
+        {
+          ...getRegistryComponent('button'),
+          dependencies: ['utils', 'tokens', 'badge'],
+        },
+        defaultConfig,
+      ),
+    ).toThrow('component dependencies are not supported');
+    expect(existsSync(join(project, 'src'))).toBe(false);
+  });
 });

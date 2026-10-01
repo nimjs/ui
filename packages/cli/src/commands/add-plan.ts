@@ -2,7 +2,10 @@ import { existsSync, lstatSync, readFileSync, realpathSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type { RegistryComponentManifest } from '@nimjs/registry';
+import {
+  isSystemDependency,
+  type RegistryComponentManifest,
+} from '@nimjs/registry';
 
 import type { UiResolvedConfig } from '../config/types';
 
@@ -85,6 +88,15 @@ export function createAddPlan(
   config: UiResolvedConfig,
 ): AddPlan {
   const projectRoot = realpathSync(cwd);
+
+  const componentDependencies = manifest.dependencies.filter(
+    (dependency) => !isSystemDependency(dependency),
+  );
+  if (componentDependencies.length > 0) {
+    throw new Error(
+      `Cannot copy ${manifest.name}: component dependencies are not supported yet (${componentDependencies.join(', ')}).`,
+    );
+  }
 
   if (isAbsolute(config.componentsDir)) {
     throw new Error('"componentsDir" must be relative to the project root.');
