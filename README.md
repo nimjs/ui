@@ -24,7 +24,7 @@ pnpm install
 pnpm dev
 ```
 
-`pnpm dev` starts the Next.js docs app. For validation, run `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`, and `pnpm verify:consumer` for the packed Button fixture. These commands develop the monorepo; they do not install NimJS UI into another application.
+`pnpm dev` starts the Next.js docs app. Run `pnpm verify` before a PR. It runs lint, typecheck, tests, package and docs builds, registry validation, packed external consumer checks for all four components, and the `/ui/` Pages export. The consumer check installs tarballs into temporary projects outside this workspace.
 
 ## Packages and architecture
 

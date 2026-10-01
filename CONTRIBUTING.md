@@ -18,14 +18,10 @@ pnpm dev
 `pnpm dev` starts the docs app. In another terminal, validate your change:
 
 ```sh
-pnpm lint
-pnpm typecheck
-pnpm test
-pnpm build
-pnpm verify:consumer
+pnpm verify
 ```
 
-Run `pnpm turbo run build:pages --filter=@nimjs/docs` when changing Pages behavior. Run a packed external consumer check when changing exports, CSS paths, registry lookup, CLI output, or installation instructions. [Development](docs/development.md) explains each gate and the component checklist. The [consumer cookbook](docs/consumer-setup.md) supplies the current external setup.
+The gate includes `pnpm turbo run build:pages --filter=@nimjs/docs` with the `/ui` base path and packed external checks. Individual commands remain available for focused work. [Development](docs/development.md) explains each gate and the component checklist. The [consumer cookbook](docs/consumer-setup.md) supplies the current external setup.
 
 ## Make the change
 
