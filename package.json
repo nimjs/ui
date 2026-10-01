@@ -20,7 +20,9 @@
     "release:packages": "pnpm -r --filter \"./packages/*\" --if-present run build",
     "release:preflight": "node ./scripts/release-preflight.mjs",
     "release": "pnpm release:preflight && pnpm release:packages && changeset publish",
-    "verify:consumer": "node ./scripts/verify-consumer.mjs"
+    "verify:registry": "pnpm --dir packages/registry build && node ./scripts/verify-registry.mjs",
+    "verify:consumer": "node ./scripts/verify-consumer.mjs",
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm verify:registry && pnpm verify:consumer && NEXT_PUBLIC_BASE_PATH=/ui pnpm turbo run build:pages --filter=@nimjs/docs"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
