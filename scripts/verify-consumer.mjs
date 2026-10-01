@@ -13,10 +13,30 @@ const root = resolve(import.meta.dirname, '..');
 const temp = mkdtempSync(join(tmpdir(), 'nimjs-consumer-'));
 const packs = join(temp, 'packs');
 mkdirSync(packs);
+const uiDependencies = JSON.parse(
+  readFileSync(join(root, 'packages/ui/package.json')),
+).dependencies;
+const utilsDependencies = JSON.parse(
+  readFileSync(join(root, 'packages/utils/package.json')),
+).dependencies;
+const copyDependencies = new Set(
+  readdirSync(join(root, 'packages/registry/components'))
+    .filter((file) => file.endsWith('.json'))
+    .flatMap(
+      (file) =>
+        JSON.parse(
+          readFileSync(join(root, 'packages/registry/components', file)),
+        ).npmDependencies,
+    ),
+);
 
 function run(cwd, command, ...args) {
   console.log(`\n${cwd}: ${command} ${args.join(' ')}`);
   execFileSync(command, args, { cwd, stdio: 'inherit' });
+}
+
+function capture(cwd, command, ...args) {
+  return execFileSync(command, args, { cwd, encoding: 'utf8' }).trim();
 }
 
 function put(dir, name, content) {
@@ -53,9 +73,11 @@ function fixture(mode) {
     dependencies['@nimjs/tokens'] = `file:${packageTarball('tokens')}`;
   } else {
     dependencies['@nimjs/cli'] = `file:${packageTarball('cli')}`;
-    dependencies['class-variance-authority'] = '^0.7.1';
-    dependencies.clsx = '^2.1.1';
-    dependencies['tailwind-merge'] = '^2.6.0';
+    for (const name of copyDependencies) {
+      dependencies[name] = uiDependencies[name] ?? utilsDependencies[name];
+      if (!dependencies[name])
+        throw new Error(`No workspace version for ${name}`);
+    }
   }
   put(
     dir,
@@ -88,16 +110,19 @@ function fixture(mode) {
       throw new Error('ui init wrote an invalid or unexpected config');
     }
     run(dir, 'pnpm', 'exec', 'ui', 'add', 'button', '--dry-run');
-    run(dir, 'pnpm', 'exec', 'ui', 'add', 'button');
-    run(dir, 'pnpm', 'exec', 'ui', 'add', 'button');
+    for (const component of ['button', 'input', 'card', 'badge']) {
+      run(dir, 'pnpm', 'exec', 'ui', 'add', component);
+      run(dir, 'pnpm', 'exec', 'ui', 'add', component);
+    }
   }
 
-  const buttonImport = packageMode
-    ? '@nimjs/ui'
-    : './components/ui/button/button';
-  const ssrImport = packageMode
-    ? '@nimjs/ui/button'
-    : './src/components/ui/button/button';
+  const imports = packageMode
+    ? "import { Button, Input, Card, CardTitle, Badge } from '@nimjs/ui';"
+    : `import { Button } from './components/ui/button/button';
+import { Input } from './components/ui/input/input';
+import { Card, CardTitle } from './components/ui/card/card';
+import { Badge } from './components/ui/badge/badge';`;
+  const ssrImports = imports.replaceAll("'./components/", "'./src/components/");
   const cssImport = packageMode
     ? '@nimjs/tokens/styles.css'
     : './components/ui/_lib/tokens.css';
@@ -109,7 +134,7 @@ function fixture(mode) {
   put(
     dir,
     'src/main.tsx',
-    `import { createRoot } from 'react-dom/client';\nimport { Button } from '${buttonImport}';\nimport './style.css';\ncreateRoot(document.getElementById('root')!).render(<Button>Continue</Button>);\n`,
+    `import { createRoot } from 'react-dom/client';\n${imports}\nimport './style.css';\ncreateRoot(document.getElementById('root')!).render(<main><Button>Continue</Button><Input aria-label="Name" /><Card><CardTitle>Title</CardTitle></Card><Badge>Preview</Badge></main>);\n`,
   );
   put(
     dir,
@@ -119,8 +144,15 @@ function fixture(mode) {
   put(
     dir,
     'ssr.tsx',
-    `import React from 'react';\nimport { renderToString } from 'react-dom/server';\nimport { Button } from '${ssrImport}';\nconst html = renderToString(<Button>Continue</Button>);\nif (!html.includes('<button') || !html.includes('Continue')) throw new Error(html);\n`,
+    `import React from 'react';\nimport { renderToString } from 'react-dom/server';\n${ssrImports}\nconst html = renderToString(<main><Button disabled>Continue</Button><Input aria-label="Name" /><Card><CardTitle>Title</CardTitle></Card><Badge>Preview</Badge></main>);\nif (!html.includes('<button') || !html.includes('disabled=""') || !html.includes('aria-label="Name"') || !html.includes('Preview')) throw new Error(html);\nconsole.log(html);\n`,
   );
+  if (packageMode) {
+    put(
+      dir,
+      'src/subpaths.tsx',
+      `import { Button } from '@nimjs/ui/button';\nimport { Input } from '@nimjs/ui/input';\nimport { Card } from '@nimjs/ui/card';\nimport { Badge } from '@nimjs/ui/badge';\nexport const components = [Button, Input, Card, Badge];\n`,
+    );
+  }
   put(
     dir,
     'tsconfig.json',
@@ -147,17 +179,30 @@ function fixture(mode) {
   put(
     dir,
     'tailwind.config.cjs',
-    `module.exports = { content: ['./src/**/*.{ts,tsx}'${packageMode ? ", './node_modules/@nimjs/ui/dist/**/*.{js,mjs}'" : ''}], theme: { extend: { colors: { primary: 'var(--primary)', 'primary-foreground': 'var(--primary-foreground)', ring: 'var(--ring)' } } } };\n`,
+    `module.exports = { content: ['./src/**/*.{ts,tsx}'${packageMode ? ", './node_modules/@nimjs/ui/dist/**/*.{js,mjs}'" : ''}], theme: { extend: { colors: Object.fromEntries(['background','foreground','card','card-foreground','muted','muted-foreground','border','input','primary','primary-foreground','secondary','secondary-foreground','accent','accent-foreground','ring','destructive','destructive-foreground'].map(name => [name, 'var(--' + name + ')'])) } } };\n`,
   );
   run(dir, 'pnpm', 'exec', 'tsc', '--noEmit');
-  run(dir, 'pnpm', 'exec', 'tsx', 'ssr.tsx');
+  const html = capture(dir, 'pnpm', 'exec', 'tsx', 'ssr.tsx');
+  if (packageMode) {
+    run(
+      dir,
+      'node',
+      '-e',
+      "for (const name of ['button','input','card','badge']) if (!require('@nimjs/ui/' + name)) throw new Error(name)",
+    );
+  }
   run(dir, 'pnpm', 'exec', 'vite', 'build');
   const cssFile = readdirSync(join(dir, 'dist', 'assets')).find((name) =>
     name.endsWith('.css'),
   );
   if (!cssFile) throw new Error('No consumer CSS emitted');
   const css = readFileSync(join(dir, 'dist', 'assets', cssFile), 'utf8');
-  if (!css.includes('.bg-primary') || !css.includes('--primary:')) {
+  if (
+    !css.includes('.bg-primary') ||
+    !css.includes('.bg-card') ||
+    !css.includes('.border-input') ||
+    !css.includes('--primary:')
+  ) {
     throw new Error(
       'Consumer CSS is missing the Button class or semantic token',
     );
@@ -169,6 +214,45 @@ function fixture(mode) {
       `@import '@nimjs/ui/styles.css';\n@tailwind base;\n@tailwind components;\n@tailwind utilities;\n`,
     );
     run(dir, 'pnpm', 'exec', 'vite', 'build');
+  }
+  return html;
+}
+
+function verifyArchive(name) {
+  const archive = packageTarball(name);
+  const entries = capture(root, 'tar', '-tzf', archive).split('\n');
+  const manifest = JSON.parse(
+    readFileSync(join(root, 'packages', name, 'package.json')),
+  );
+  const required = [
+    'package/package.json',
+    'package/README.md',
+    'package/LICENSE',
+  ];
+  for (const target of Object.values(manifest.exports ?? {})) {
+    for (const path of Object.values(
+      typeof target === 'string' ? { default: target } : target,
+    )) {
+      required.push(`package/${path.slice(2)}`);
+    }
+  }
+  for (const path of Object.values(manifest.bin ?? {})) {
+    required.push(`package/${path.slice(2)}`);
+  }
+  for (const path of required) {
+    if (!entries.includes(path))
+      throw new Error(`${name} archive lacks ${path}`);
+  }
+  for (const path of entries) {
+    const allowed =
+      required.includes(path) ||
+      (path.startsWith('package/dist/') &&
+        !/\.(?:map|test\.[cm]?[jt]sx?|spec\.[cm]?[jt]sx?)$/.test(path)) ||
+      (name === 'registry' &&
+        /^package\/components\/[a-z][a-z0-9-]*\.json$/.test(path));
+    if (!allowed) {
+      throw new Error(`${name} archive contains unwanted file: ${path}`);
+    }
   }
 }
 
@@ -198,14 +282,15 @@ try {
       '--pack-destination',
       packs,
     );
-    const entries = execFileSync('tar', ['-tzf', packageTarball(name)], {
-      encoding: 'utf8',
-    });
-    if (!entries.includes('package/LICENSE'))
-      throw new Error(`${name} tarball lacks LICENSE`);
+    verifyArchive(name);
   }
-  fixture('package');
-  fixture('copy');
+  const packageHtml = fixture('package');
+  const copyHtml = fixture('copy');
+  if (packageHtml !== copyHtml) {
+    throw new Error(
+      'Package and copy mode produce different server-rendered markup',
+    );
+  }
   console.log(`\nExternal consumer verification passed. Fixtures: ${temp}`);
 } catch (error) {
   console.error(
