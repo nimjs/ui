@@ -1,18 +1,11 @@
 # @nimjs/tokens
 
-Central design tokens package for UI.
+Design primitives, a light theme mapping, and CSS variables for NimJS UI. This intended public package is not released on npm yet. Use the [packed artifact setup](https://github.com/nimjs/ui/blob/main/docs/consumer-setup.md) for external evaluation.
 
-It exposes:
+Public entry points: package root for TypeScript values and `/styles.css` for variables. Import the stylesheet once in an application's global CSS:
 
-- token primitives in TypeScript
-- semantic light theme mappings
-- CSS variables for applications and component packages
+```css
+@import '@nimjs/tokens/styles.css';
+```
 
-Use `@nimjs/tokens/styles.css` in apps and rely on semantic variables such as
-`--background`, `--foreground`, and `--primary` instead of hardcoded colors.
-
-The light theme also exposes surface, border, foreground, and primary state
-roles. Brand primitives (`brand.violet`, `brand.lavender`, `brand.periwinkle`,
-and `brand.blue`) feed the shared CSS theme; existing color keys remain exported
-for compatibility. A dark selector is present, but the docs app only enables the
-light theme today.
+Components consume semantic roles such as `--background`, `--foreground`, `--primary`, and `--ring`. The CSS contains a dark selector, but dark consumer behavior has not passed its validation gate. Missing CSS variables leave NimJS components incompletely styled. The [architecture](https://github.com/nimjs/ui/blob/main/docs/architecture.md#tokens-and-themes) explains token ownership and changes.

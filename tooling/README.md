@@ -1,4 +1,3 @@
 # Tooling
 
-This directory is reserved for future repository automation such as code generation,
-release helpers, validation scripts, and contributor quality-of-life tooling.
+Repository-level test support lives here. `vitest.setup.ts` configures component tests. Build and release scripts live in their respective packages and `scripts/`; this directory is not a public package.

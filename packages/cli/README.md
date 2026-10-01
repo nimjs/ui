@@ -1,28 +1,13 @@
 # @nimjs/cli
 
-Foundation CLI for UI.
+Local source-copying CLI for NimJS UI. It is not publicly released yet. Evaluate it through the [packed artifact workflow](https://github.com/nimjs/ui/blob/main/docs/consumer-setup.md#copy-mode).
 
-Current commands:
+```sh
+pnpm exec ui init
+pnpm exec ui add button --dry-run
+pnpm exec ui add button
+```
 
-- `ui init`
-- `ui add <component>`
+`init` creates `ui.config.ts` if absent, with `componentsDir: 'src/components/ui'` and `tokens: true`. `add` uses local registry metadata and assets bundled when the CLI was built. It writes the component, a local `cn` helper, and token CSS when needed. `--dry-run` prints planned creates/skips without writing. Existing identical files are skipped; different content causes an error, with no overwrite flag. Paths outside the project and symbolic-link output paths are rejected.
 
-The current implementation is intentionally small, but the package layout already
-supports:
-
-- command modules
-- registry-driven component lookup
-- config resolution
-- canonical source assets bundled at build time
-- future remote registry support
-
-`ui add` reads from `@nimjs/registry`, resolves dependencies, and loads
-`ui.config.ts` when present. Its packaged component files are copied from
-`packages/ui/src/components` during the CLI build. Run `ui add button --dry-run`
-to inspect the plan. Repeated installs skip identical files and reject edits
-without overwriting them.
-
-Copy mode creates a local `cn` helper and semantic token CSS. Install the npm
-packages listed by the command, import the generated CSS once, and configure
-Tailwind semantic colors and content paths in the consuming project. See
-[the consumer setup guide](../../docs/consumer-setup.md).
+The CLI reports npm dependencies but does not install them, import CSS, or configure Tailwind. Install the reported packages, import the generated token CSS, and configure Tailwind 3 content paths and semantic colors manually. Copied code belongs to your application and is not updated by package upgrades. Config files are executable local code loaded with `jiti`.

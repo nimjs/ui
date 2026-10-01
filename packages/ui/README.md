@@ -1,27 +1,15 @@
 # @nimjs/ui
 
-Core React components for UI.
+Preview React components for NimJS UI. The package is not publicly released yet; use the [packed artifact setup](https://github.com/nimjs/ui/blob/main/docs/consumer-setup.md) for external evaluation.
 
-Included in the baseline:
+Public entry points: package root, `/button`, `/input`, `/card`, `/badge`, and `/styles.css`. The root exports `Button`, `Input`, `Card` parts, `Badge`, variants, and component prop types. Import only declared subpaths.
 
-- `Button`
-- `Input`
-- `Card`
-- `Badge`
+```tsx
+import { Button } from '@nimjs/ui';
 
-Design goals:
+export function Example() {
+  return <Button type="submit">Save</Button>;
+}
+```
 
-- stable public exports
-- semantic color usage through CSS variables
-- accessible defaults
-- no circular dependencies
-- straightforward contributor ergonomics
-- registry-friendly component boundaries for docs and CLI integration
-
-When adding a new component:
-
-1. Create `src/components/<component>/`.
-2. Export it from the package root and a dedicated subpath.
-3. Add docs content in `apps/docs`.
-4. Add tests if behavior or variants are non-trivial.
-5. Add a changeset if the package is user-facing.
+React and React DOM `^19.0.0` are peers. Components use Tailwind 3 class names and semantic CSS variables. Import `@nimjs/tokens/styles.css` or `@nimjs/ui/styles.css` once, map semantic colors in Tailwind, and scan the package distribution. See the [consumer cookbook](https://github.com/nimjs/ui/blob/main/docs/consumer-setup.md) for the full setup and current limitations. Copied components use a separate CLI workflow.

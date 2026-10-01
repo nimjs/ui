@@ -1,14 +1,5 @@
-# @nimjs/docs
+# NimJS UI documentation app
 
-Next.js App Router docs and demo application for UI.
+Internal Next.js App Router site. Typed content and component examples live in `content/`; routes render them from `app/`. Registry metadata supplies component status, tokens, and dependencies. Repository architecture, contribution, and release policy live in the [docs index](../../docs/README.md).
 
-Goals:
-
-- show the path from tokens to semantic CSS variables to UI components
-- show registry metadata such as dependencies and token usage
-- keep documentation close to the code that maintainers ship
-- make content easy to extend without changing routing architecture
-- provide a polished demo surface for open-source adoption
-
-Content is currently typed TypeScript under `content/`, with an MDX-friendly
-entrypoint (`mdx-components.tsx`) ready for future content migration.
+From the repository root, `pnpm dev` runs the site and `pnpm build` builds all packages plus the site. The Pages workflow runs `pnpm turbo run build:pages --filter=@nimjs/docs` with a base path and static export; that workflow publishes to GitHub Pages when enabled by repository settings. A successful workflow file alone does not prove Pages settings are active.

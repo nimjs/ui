@@ -1,12 +1,7 @@
 # @nimjs/registry
 
-Typed component registry for UI.
+Typed local component metadata for NimJS UI. This intended public package is not released on npm yet. Its package root exports the manifest loader, lists, types, and constants; `components/*.json` are bundled data, not declared package subpath exports.
 
-This package is the shared source of truth for:
+Manifests name canonical source files, system and npm dependencies, semantic tokens, category, status, anatomy, accessibility features, and usage patterns. `schemaVersion` is currently `1`. The CLI and docs use the root loader; implementations remain in `packages/ui/src/components`. Current components are marked `preview` pending external acceptance checks.
 
-- CLI component discovery
-- docs metadata linkage
-- future generated docs and remote registries
-
-Each component manifest lives in `components/*.json` and is validated through the
-typed runtime loader exported from `src/index.ts`.
+See the [registry contract](https://github.com/nimjs/ui/blob/main/docs/architecture.md#registry-contract) and [consumer setup](https://github.com/nimjs/ui/blob/main/docs/consumer-setup.md). Schema changes that affect CLI output need coordinated tests and a changeset.
