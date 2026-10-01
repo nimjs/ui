@@ -20,7 +20,8 @@
   "files": [
     "dist",
     "src/css/variables.css",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {

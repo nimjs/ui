@@ -19,7 +19,8 @@
   "files": [
     "components",
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {

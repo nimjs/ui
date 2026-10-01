@@ -18,7 +18,8 @@
   "files": [
     "dist",
     "src/styles/index.css",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
