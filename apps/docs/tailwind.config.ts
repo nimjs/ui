@@ -58,17 +58,10 @@ const config: Config = {
         destructive: 'var(--destructive)',
         'destructive-foreground': 'var(--destructive-foreground)',
       },
-      boxShadow: {
-        soft: '0 24px 60px -32px rgba(32, 1, 1, 0.24)',
-      },
       borderRadius: {
         lg: 'var(--radius-lg)',
         md: 'var(--radius-md)',
         sm: 'var(--radius-sm)',
-      },
-      backgroundImage: {
-        'hero-radial':
-          'radial-gradient(circle at top left, rgba(180, 25, 2, 0.12), transparent 42%), radial-gradient(circle at bottom right, rgba(133, 69, 8, 0.14), transparent 38%)',
       },
     },
   },
