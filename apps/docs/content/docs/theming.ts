@@ -17,7 +17,7 @@ export const themingPage: DocPage = {
         {
           label: 'Semantic variables',
           language: 'css',
-          code: `--background\n--foreground\n--card\n--card-foreground\n--muted\n--muted-foreground\n--border\n--input\n--primary\n--primary-foreground\n--secondary\n--secondary-foreground\n--accent\n--accent-foreground\n--ring\n--destructive\n--destructive-foreground`,
+          code: `--background\n--foreground\n--surface-raised\n--surface-subtle\n--card\n--card-foreground\n--muted\n--muted-foreground\n--foreground-subtle\n--border\n--border-strong\n--input\n--primary\n--primary-hover\n--primary-active\n--primary-foreground\n--secondary\n--secondary-foreground\n--accent\n--accent-foreground\n--ring\n--destructive\n--destructive-foreground`,
         },
       ],
     },
@@ -41,7 +41,7 @@ export const themingPage: DocPage = {
         'Components can remain stable while visual direction changes, because the UI package refers to semantic roles rather than to individual brand colors. That lowers migration cost when the design language evolves.',
       ],
       list: [
-        'No hardcoded color values in the docs app or component package',
+        'Shared semantic color roles across docs and components',
         'Light theme is fully implemented',
         'Dark theme hook points are present through data-theme selectors',
       ],
