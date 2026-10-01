@@ -1,22 +1,5 @@
 # Support
 
-Use the right channel so maintainers and contributors can help efficiently.
+For usage questions, check the [documentation map](docs/README.md) and [consumer setup](docs/consumer-setup.md), then use [GitHub Discussions](https://github.com/nimjs/ui/discussions) if enabled. If Discussions is unavailable, open a GitHub issue labeled as a question. Support is community and maintainer best effort; no response time is promised.
 
-## Questions
-
-For usage questions and implementation guidance, open a GitHub Discussion if the
-repository enables Discussions, or use your organization community channel.
-
-## Bug Reports
-
-For confirmed bugs or regressions, open a GitHub issue with the bug report
-template and include reproduction details.
-
-## Feature Requests
-
-For product or API ideas, use the feature request template so maintainers can
-evaluate scope, compatibility, and governance impact.
-
-## Security Issues
-
-Do not use public issues for vulnerabilities. Follow [SECURITY.md](./SECURITY.md).
+A reproducible defect belongs in the [bug report](https://github.com/nimjs/ui/issues/new/choose) template with package, steps, and environment. A proposed capability belongs in the feature request template with its use case. Documentation corrections can use the docs template or a pull request. Report vulnerabilities only through [Security](SECURITY.md), not public issues.

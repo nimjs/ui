@@ -1,37 +1,7 @@
-# Security Policy
+# Security policy
 
-## Reporting A Vulnerability
+Report suspected vulnerabilities privately through [GitHub Security Advisories](https://github.com/nimjs/ui/security/advisories/new). Do not publish an exploit or use a public issue before maintainers can investigate. Include affected package/path, impact, reproduction, and any suggested mitigation. If the private advisory route is unavailable, use the repository maintainer contact shown on GitHub rather than posting technical details publicly.
 
-Please do not open a public GitHub issue for suspected security vulnerabilities.
+No public npm version has been verified. During pre-release development, maintainers assess reports against `main` and any actually published latest version. Older snapshots and unreleased external forks have no guaranteed support window. A report about CLI filesystem writes, executable config loading, generated source, package artifacts, or release credentials may be security relevant.
 
-Instead, report the issue privately through GitHub Security Advisories:
-
-`https://github.com/nimjs/ui/security/advisories/new`
-
-Include:
-
-- a clear description of the problem
-- affected package or area
-- reproduction steps or proof of concept
-- impact assessment if known
-
-We will acknowledge reports as soon as reasonably possible and coordinate a
-responsible disclosure process.
-
-## Supported Versions
-
-During early public development, security fixes are best-effort for:
-
-| Version                | Supported |
-| ---------------------- | --------- |
-| `main`                 | Yes       |
-| latest published minor | Yes       |
-| older prereleases      | No        |
-
-## Disclosure Policy
-
-- Please give maintainers reasonable time to investigate and fix the issue before
-  public disclosure.
-- We may request additional validation details during triage.
-- If a fix requires coordinated release notes, maintainers will prepare them
-  before disclosure.
+Acknowledgment, fixes, and disclosure timing depend on maintainer availability and severity; there is no fixed SLA. Maintainers may ask for validation details and coordinate release notes or disclosure after a fix. Never include secrets in a report or pull request.
