@@ -23,7 +23,10 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint, typecheck, test, and build
         run: pnpm turbo run lint typecheck test build
+
+      - name: Verify packed external consumers
+        run: pnpm verify:consumer
