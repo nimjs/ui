@@ -1,6 +1,6 @@
 name: Documentation improvement
 description: Suggest a docs clarification, missing example, or onboarding fix.
-title: "[Docs]: "
+title: '[Docs]: '
 labels:
   - documentation
 body:

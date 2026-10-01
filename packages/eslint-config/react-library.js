@@ -5,7 +5,9 @@ import globals from 'globals';
 
 import { createBaseConfig } from './base.js';
 
-export function createReactLibraryConfig({ tsconfigRootDir = process.cwd() } = {}) {
+export function createReactLibraryConfig({
+  tsconfigRootDir = process.cwd(),
+} = {}) {
   return [
     ...createBaseConfig({ tsconfigRootDir }),
     {
