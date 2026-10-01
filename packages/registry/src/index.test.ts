@@ -17,7 +17,7 @@ describe('registry', () => {
       getRegistryComponent('card').anatomy.map((item) => item.name),
     ).toContain('content');
     expect(registryComponentsByName.input.tokens).toContain('input');
-    expect(registryComponentsByName.input.status).toBe('stable');
+    expect(registryComponentsByName.input.status).toBe('preview');
     expect(getRegistryComponent('button').schemaVersion).toBe(1);
     expect(getRegistryComponent('button').npmDependencies).toContain(
       'class-variance-authority',

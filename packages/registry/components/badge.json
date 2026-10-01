@@ -17,7 +17,7 @@
     "ring"
   ],
   "category": "ui",
-  "status": "stable",
+  "status": "preview",
   "since": "0.0.0",
   "description": "Compact status and metadata label",
   "anatomy": [
