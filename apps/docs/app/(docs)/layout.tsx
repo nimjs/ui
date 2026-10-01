@@ -5,11 +5,19 @@ import { SiteHeader } from '@/components/site-header';
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="docs-root">
       <SiteHeader />
-      <div className="mx-auto flex max-w-7xl gap-10 px-6 py-10 lg:px-8">
-        <DocsSidebar />
-        <main className="min-w-0 flex-1">{children}</main>
+      <div className="site-container docs-layout">
+        <aside className="docs-sidebar">
+          <DocsSidebar />
+        </aside>
+        <details className="docs-mobile-menu">
+          <summary>
+            Browse documentation <span aria-hidden="true">⌄</span>
+          </summary>
+          <DocsSidebar mobile />
+        </details>
+        <main className="docs-main">{children}</main>
       </div>
     </div>
   );

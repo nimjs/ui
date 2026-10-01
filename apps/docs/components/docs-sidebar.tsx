@@ -3,43 +3,44 @@
 import { cn } from '@nimjs/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 import { navigationGroups } from '@/content/navigation';
 
-export function DocsSidebar() {
+export function DocsSidebar({ mobile = false }: { mobile?: boolean }) {
   const pathname = usePathname();
 
-  return (
-    <aside className="sticky top-24 hidden h-[calc(100vh-7rem)] w-72 shrink-0 overflow-y-auto pr-4 lg:block">
-      <nav className="space-y-8">
-        {navigationGroups.map((group) => (
-          <div key={group.title} className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-brand-red)]">
-              {group.title}
-            </p>
-            <div className="space-y-1">
-              {group.items.map((item) => {
-                const active = pathname === item.href;
+  useEffect(() => {
+    if (mobile) {
+      document
+        .querySelector<HTMLDetailsElement>('.docs-mobile-menu')
+        ?.removeAttribute('open');
+    }
+  }, [mobile, pathname]);
 
-                return (
-                  <Link
-                    className={cn(
-                      'block rounded-md px-3 py-2 text-sm transition-colors',
-                      active
-                        ? 'bg-accent text-accent-foreground'
-                        : 'text-muted-foreground hover:bg-muted hover:text-foreground',
-                    )}
-                    href={item.href}
-                    key={item.href}
-                  >
-                    {item.title}
-                  </Link>
-                );
-              })}
-            </div>
+  return (
+    <nav aria-label="Documentation" className="docs-navigation">
+      {navigationGroups.map((group) => (
+        <div className="docs-navigation-group" key={group.title}>
+          <p className="docs-navigation-label">{group.title}</p>
+          <div className="docs-navigation-items">
+            {group.items.map((item) => {
+              const active = pathname.replace(/\/$/, '') === item.href;
+
+              return (
+                <Link
+                  className={cn('docs-navigation-link', active && 'is-active')}
+                  href={item.href}
+                  key={item.href}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {item.title}
+                </Link>
+              );
+            })}
           </div>
-        ))}
-      </nav>
-    </aside>
+        </div>
+      ))}
+    </nav>
   );
 }

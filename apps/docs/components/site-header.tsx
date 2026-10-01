@@ -1,26 +1,73 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef } from 'react';
+
+import { BrandMark } from './brand-mark';
+
+const links = [
+  { href: '/docs', label: 'Docs' },
+  { href: '/components', label: 'Components' },
+  { href: '/docs/theming', label: 'Theming' },
+];
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  const mobileMenuRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    if (mobileMenuRef.current) mobileMenuRef.current.open = false;
+  }, [pathname]);
+
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-white/90 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <Link className="flex items-center gap-3 font-semibold" href="/">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground">
-            N
+    <header className="site-header">
+      <div className="site-container header-inner">
+        <Link aria-label="NimJS UI home" className="brand-lockup" href="/">
+          <BrandMark className="brand-symbol" />
+          <span>
+            NimJS <span className="brand-slash">/</span> UI
           </span>
-          UI
         </Link>
-        <nav className="flex items-center gap-5 text-sm text-muted-foreground">
-          <Link className="hover:text-foreground" href="/docs">
-            Docs
-          </Link>
-          <Link className="hover:text-foreground" href="/components">
-            Components
-          </Link>
-          <Link className="hover:text-foreground" href="/docs/theming">
-            Theming
-          </Link>
+        <nav aria-label="Main navigation" className="desktop-navigation">
+          {links.map((link) => (
+            <Link href={link.href} key={link.href}>
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href="https://github.com/nimjs/ui"
+            rel="noreferrer"
+            target="_blank"
+          >
+            GitHub
+          </a>
         </nav>
+        <Link className="header-action" href="/docs/introduction">
+          Get started <span aria-hidden="true">↗</span>
+        </Link>
+        <details className="mobile-navigation" ref={mobileMenuRef}>
+          <summary aria-label="Menu">
+            <span />
+            <span />
+            <span />
+          </summary>
+          <nav aria-label="Mobile navigation">
+            {links.map((link) => (
+              <Link href={link.href} key={link.href}>
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="https://github.com/nimjs/ui"
+              rel="noreferrer"
+              target="_blank"
+            >
+              GitHub
+            </a>
+            <Link href="/docs/introduction">Get started</Link>
+          </nav>
+        </details>
       </div>
     </header>
   );
