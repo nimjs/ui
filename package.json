@@ -10,7 +10,7 @@
   "scripts": {
     "build": "turbo run build",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
-    "dev": "turbo run dev --filter=@nimjs/docs",
+    "dev": "pnpm turbo run build --filter=@nimjs/docs^... && turbo run dev --filter=@nimjs/docs...",
     "format": "prettier --write .",
     "lint": "turbo run lint",
     "test": "turbo run test",
@@ -19,7 +19,8 @@
     "version-packages": "changeset version",
     "release:packages": "pnpm -r --filter \"./packages/*\" --if-present run build",
     "release:preflight": "node ./scripts/release-preflight.mjs",
-    "release": "pnpm release:preflight && pnpm release:packages && changeset publish"
+    "release": "pnpm release:preflight && pnpm release:packages && changeset publish",
+    "verify:consumer": "node ./scripts/verify-consumer.mjs"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
