@@ -19,15 +19,19 @@ const uiDependencies = JSON.parse(
 const utilsDependencies = JSON.parse(
   readFileSync(join(root, 'packages/utils/package.json')),
 ).dependencies;
+const componentNames = readdirSync(join(root, 'packages/registry/components'))
+  .filter((file) => file.endsWith('.json'))
+  .map((file) => file.slice(0, -5))
+  .sort();
 const copyDependencies = new Set(
-  readdirSync(join(root, 'packages/registry/components'))
-    .filter((file) => file.endsWith('.json'))
-    .flatMap(
-      (file) =>
-        JSON.parse(
-          readFileSync(join(root, 'packages/registry/components', file)),
-        ).npmDependencies,
-    ),
+  componentNames.flatMap(
+    (name) =>
+      JSON.parse(
+        readFileSync(
+          join(root, 'packages/registry/components', name + '.json'),
+        ),
+      ).npmDependencies,
+  ),
 );
 
 function run(cwd, command, ...args) {
@@ -110,7 +114,7 @@ function fixture(mode) {
       throw new Error('ui init wrote an invalid or unexpected config');
     }
     run(dir, 'pnpm', 'exec', 'ui', 'add', 'button', '--dry-run');
-    for (const component of ['button', 'input', 'card', 'badge']) {
+    for (const component of componentNames) {
       run(dir, 'pnpm', 'exec', 'ui', 'add', component);
       run(dir, 'pnpm', 'exec', 'ui', 'add', component);
     }
@@ -123,6 +127,43 @@ import { Input } from './components/ui/input/input';
 import { Card, CardTitle } from './components/ui/card/card';
 import { Badge } from './components/ui/badge/badge';`;
   const ssrImports = imports.replaceAll("'./components/", "'./src/components/");
+  const extraImports = packageMode
+    ? "import { Field, FieldControl, FieldLabel, FieldDescription, FieldError, Textarea, Checkbox, Switch, Alert, AlertTitle, AlertDescription, Progress, Separator, Skeleton, Spinner, Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, Pagination, PaginationList, PaginationItem, PaginationLink, Select, RadioGroup, RadioGroupItem, Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose, Avatar, AvatarFallback, AvatarImage, EmptyState, EmptyStateTitle, EmptyStateDescription, EmptyStateActions, Collapsible, CollapsibleTrigger, CollapsibleContent, Tabs, TabsList, TabsTrigger, TabsContent, Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@nimjs/ui';"
+    : `import { Field, FieldControl, FieldLabel, FieldDescription, FieldError } from './components/ui/field/field';
+import { Textarea } from './components/ui/textarea/textarea';
+import { Checkbox } from './components/ui/checkbox/checkbox';
+import { Switch } from './components/ui/switch/switch';
+import { Alert, AlertTitle, AlertDescription } from './components/ui/alert/alert';
+import { Progress } from './components/ui/progress/progress';
+import { Separator } from './components/ui/separator/separator';
+import { Skeleton } from './components/ui/skeleton/skeleton';
+import { Spinner } from './components/ui/spinner/spinner';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from './components/ui/breadcrumb/breadcrumb';
+import { Pagination, PaginationList, PaginationItem, PaginationLink } from './components/ui/pagination/pagination';`;
+  const formImports = packageMode
+    ? ''
+    : `import { Select } from './components/ui/select/select';
+import { RadioGroup, RadioGroupItem } from './components/ui/radio-group/radio-group';
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from './components/ui/dialog/dialog';`;
+  const displayImports = packageMode
+    ? ''
+    : `import { Avatar, AvatarFallback, AvatarImage } from './components/ui/avatar/avatar';
+import { EmptyState, EmptyStateTitle, EmptyStateDescription, EmptyStateActions } from './components/ui/empty-state/empty-state';`;
+  const disclosureImports = packageMode
+    ? ''
+    : `import { Collapsible, CollapsibleTrigger, CollapsibleContent } from './components/ui/collapsible/collapsible';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from './components/ui/tabs/tabs';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './components/ui/accordion/accordion';`;
+  put(
+    dir,
+    'src/extra.tsx',
+    `${extraImports}
+${formImports}
+${displayImports}
+${disclosureImports}
+import { Input } from '${packageMode ? '@nimjs/ui' : './components/ui/input/input'}';
+export const extra = <><Field description error invalid><FieldLabel>Email</FieldLabel><FieldControl><Input /></FieldControl><FieldDescription>Help</FieldDescription><FieldError>Error</FieldError></Field><Textarea aria-label="Note" /><Checkbox aria-label="Accept" /><Switch aria-label="Enable" /><Select aria-label="Region" defaultValue="eu"><option value="eu">Europe</option></Select><RadioGroup defaultValue="a"><legend>Plan</legend><RadioGroupItem value="a" aria-label="Basic" /></RadioGroup><Dialog><DialogTrigger>Open</DialogTrigger><DialogContent><DialogTitle>Dialog</DialogTitle><DialogDescription>Details</DialogDescription><DialogClose>Close</DialogClose></DialogContent></Dialog><Avatar aria-label="Ada"><AvatarFallback>AL</AvatarFallback><AvatarImage src="/avatar.png" alt="" /></Avatar><EmptyState><EmptyStateTitle>No results</EmptyStateTitle><EmptyStateDescription>Try another query.</EmptyStateDescription><EmptyStateActions><button>Clear</button></EmptyStateActions></EmptyState><Collapsible defaultOpen><CollapsibleTrigger>More</CollapsibleTrigger><CollapsibleContent>Details</CollapsibleContent></Collapsible><Tabs defaultValue="one"><TabsList aria-label="Views"><TabsTrigger value="one">One</TabsTrigger></TabsList><TabsContent value="one">Panel</TabsContent></Tabs><Accordion defaultValue="one"><AccordionItem value="one"><AccordionTrigger>Question</AccordionTrigger><AccordionContent>Answer</AccordionContent></AccordionItem></Accordion><Alert><AlertTitle>Saved</AlertTitle><AlertDescription>Ready</AlertDescription></Alert><Progress value={50} aria-label="Upload" /><Separator /><Skeleton className="h-4 w-8" /><Spinner /><Breadcrumb><BreadcrumbList><BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem><BreadcrumbSeparator /><BreadcrumbItem><BreadcrumbPage>Here</BreadcrumbPage></BreadcrumbItem></BreadcrumbList></Breadcrumb><Pagination><PaginationList><PaginationItem><PaginationLink href="?page=1" isCurrent>1</PaginationLink></PaginationItem></PaginationList></Pagination></>;\n`,
+  );
   const cssImport = packageMode
     ? '@nimjs/tokens/styles.css'
     : './components/ui/_lib/tokens.css';
@@ -134,7 +175,7 @@ import { Badge } from './components/ui/badge/badge';`;
   put(
     dir,
     'src/main.tsx',
-    `import { createRoot } from 'react-dom/client';\n${imports}\nimport './style.css';\ncreateRoot(document.getElementById('root')!).render(<main><Button>Continue</Button><Input aria-label="Name" /><Card><CardTitle>Title</CardTitle></Card><Badge>Preview</Badge></main>);\n`,
+    `import { createRoot } from 'react-dom/client';\n${imports}\nimport { extra } from './extra';\nimport './style.css';\ncreateRoot(document.getElementById('root')!).render(<main><Button>Continue</Button><Input aria-label="Name" /><Card><CardTitle>Title</CardTitle></Card><Badge>Preview</Badge>{extra}</main>);\n`,
   );
   put(
     dir,
@@ -144,13 +185,13 @@ import { Badge } from './components/ui/badge/badge';`;
   put(
     dir,
     'ssr.tsx',
-    `import React from 'react';\nimport { renderToString } from 'react-dom/server';\n${ssrImports}\nconst html = renderToString(<main><Button disabled>Continue</Button><Input aria-label="Name" /><Card><CardTitle>Title</CardTitle></Card><Badge>Preview</Badge></main>);\nif (!html.includes('<button') || !html.includes('disabled=""') || !html.includes('aria-label="Name"') || !html.includes('Preview')) throw new Error(html);\nconsole.log(html);\n`,
+    `import React from 'react';\nimport { renderToString } from 'react-dom/server';\n${ssrImports}\nimport { extra } from './src/extra';\nconst html = renderToString(<main><Button disabled>Continue</Button><Input aria-label="Name" /><Card><CardTitle>Title</CardTitle></Card><Badge>Preview</Badge>{extra}</main>);\nif (!html.includes('<button') || !html.includes('disabled=""') || !html.includes('aria-label="Name"') || !html.includes('Preview')) throw new Error(html);\nconsole.log(html);\n`,
   );
   if (packageMode) {
     put(
       dir,
       'src/subpaths.tsx',
-      `import { Button } from '@nimjs/ui/button';\nimport { Input } from '@nimjs/ui/input';\nimport { Card } from '@nimjs/ui/card';\nimport { Badge } from '@nimjs/ui/badge';\nexport const components = [Button, Input, Card, Badge];\n`,
+      `${componentNames.map((name) => `import * as component_${name.replaceAll('-', '')} from '@nimjs/ui/${name}';`).join('\n')}\nexport const components = [${componentNames.map((name) => 'component_' + name.replaceAll('-', '')).join(', ')}];\n`,
     );
   }
   put(
@@ -188,7 +229,7 @@ import { Badge } from './components/ui/badge/badge';`;
       dir,
       'node',
       '-e',
-      "for (const name of ['button','input','card','badge']) if (!require('@nimjs/ui/' + name)) throw new Error(name)",
+      `for (const name of ${JSON.stringify(componentNames)}) if (!require('@nimjs/ui/' + name)) throw new Error(name)`,
     );
   }
   run(dir, 'pnpm', 'exec', 'vite', 'build');
