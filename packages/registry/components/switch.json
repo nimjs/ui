@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "name": "switch",
+  "files": ["switch.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["background", "muted", "primary", "ring", "destructive"],
+  "category": "forms",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Native checkbox with switch semantics",
+  "anatomy": [
+    {
+      "name": "Switch",
+      "description": "Switch part of the switch component."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Use for an immediate on or off setting with a visible label."
+    }
+  ]
+}

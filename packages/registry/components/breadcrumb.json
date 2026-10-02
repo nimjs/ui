@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "name": "breadcrumb",
+  "files": ["breadcrumb.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["foreground", "muted-foreground", "ring"],
+  "category": "navigation",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Semantic breadcrumb navigation",
+  "anatomy": [
+    {
+      "name": "Breadcrumb",
+      "description": "Breadcrumb part of the breadcrumb component."
+    },
+    {
+      "name": "BreadcrumbList",
+      "description": "BreadcrumbList part of the breadcrumb component."
+    },
+    {
+      "name": "BreadcrumbItem",
+      "description": "BreadcrumbItem part of the breadcrumb component."
+    },
+    {
+      "name": "BreadcrumbLink",
+      "description": "BreadcrumbLink part of the breadcrumb component."
+    },
+    {
+      "name": "BreadcrumbPage",
+      "description": "BreadcrumbPage part of the breadcrumb component."
+    },
+    {
+      "name": "BreadcrumbSeparator",
+      "description": "BreadcrumbSeparator part of the breadcrumb component."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Mark the current page with BreadcrumbPage."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "name": "checkbox",
+  "files": ["checkbox.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["background", "input", "primary", "ring", "destructive", "radius"],
+  "category": "forms",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Native checkbox with indeterminate state",
+  "anatomy": [
+    {
+      "name": "Checkbox",
+      "description": "Checkbox part of the checkbox component."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Use a label and set indeterminate for mixed selections."
+    }
+  ]
+}

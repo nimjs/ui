@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "name": "skeleton",
+  "files": ["skeleton.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["muted", "radius"],
+  "category": "feedback",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Placeholder for loading content",
+  "anatomy": [
+    {
+      "name": "Skeleton",
+      "description": "Skeleton part of the skeleton component."
+    }
+  ],
+  "accessibility": ["native-semantics", "screen-reader-readable"],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Pair with a separate loading announcement when needed."
+    }
+  ]
+}

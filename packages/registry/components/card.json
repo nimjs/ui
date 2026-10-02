@@ -5,7 +5,7 @@
   "dependencies": ["utils", "tokens"],
   "npmDependencies": ["clsx", "tailwind-merge"],
   "tokens": ["card", "card-foreground", "border", "muted-foreground", "radius"],
-  "category": "ui",
+  "category": "display",
   "status": "preview",
   "since": "0.0.0",
   "description": "Composable surface container for grouped content",

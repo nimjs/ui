@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "name": "tabs",
+  "files": ["tabs.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["background", "foreground", "muted", "ring", "radius"],
+  "category": "navigation",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Keyboard operable tab navigation with controlled or uncontrolled selection",
+  "anatomy": [
+    {
+      "name": "Tabs",
+      "description": "Selection state owner."
+    },
+    {
+      "name": "TabsList",
+      "description": "Named tablist."
+    },
+    {
+      "name": "TabsTrigger",
+      "description": "Button with roving focus and selection."
+    },
+    {
+      "name": "TabsContent",
+      "description": "Related tab panel."
+    }
+  ],
+  "accessibility": [
+    "contrast-aware",
+    "focus-visible",
+    "keyboard-accessible",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "section navigation",
+      "description": "Use for a small set of peer views; label the tablist."
+    }
+  ]
+}

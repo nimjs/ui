@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "name": "select",
+  "files": ["select.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": [
+    "background",
+    "foreground",
+    "input",
+    "ring",
+    "destructive",
+    "radius"
+  ],
+  "category": "forms",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Native select with grouped and disabled options.",
+  "anatomy": [
+    {
+      "name": "Select",
+      "description": "Native select element."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "form control",
+      "description": "Native select with grouped and disabled options."
+    }
+  ]
+}

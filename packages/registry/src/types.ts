@@ -1,7 +1,42 @@
-export const registryCategories = ['ui', 'forms', 'charts', 'layouts'] as const;
+export const registryCategories = [
+  'ui',
+  'forms',
+  'charts',
+  'layouts',
+  'actions',
+  'navigation',
+  'overlays',
+  'feedback',
+  'display',
+  'disclosure',
+] as const;
 export const registryStatuses = ['stable', 'preview', 'experimental'] as const;
 export const systemDependencies = ['utils', 'tokens'] as const;
-export const componentNames = ['button', 'input', 'card', 'badge'] as const;
+export const componentNames = [
+  'button',
+  'input',
+  'card',
+  'badge',
+  'field',
+  'textarea',
+  'select',
+  'radio-group',
+  'dialog',
+  'avatar',
+  'empty-state',
+  'collapsible',
+  'tabs',
+  'accordion',
+  'checkbox',
+  'switch',
+  'alert',
+  'progress',
+  'separator',
+  'skeleton',
+  'spinner',
+  'breadcrumb',
+  'pagination',
+] as const;
 export const registryAccessibilityFeatures = [
   'contrast-aware',
   'focus-visible',

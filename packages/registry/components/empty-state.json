@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "name": "empty-state",
+  "files": ["empty-state.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["border", "card", "card-foreground", "muted-foreground", "radius"],
+  "category": "display",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Composed empty content message with optional actions",
+  "anatomy": [
+    {
+      "name": "EmptyState",
+      "description": "EmptyState part of the empty-state composition."
+    },
+    {
+      "name": "EmptyStateTitle",
+      "description": "EmptyStateTitle part of the empty-state composition."
+    },
+    {
+      "name": "EmptyStateDescription",
+      "description": "EmptyStateDescription part of the empty-state composition."
+    },
+    {
+      "name": "EmptyStateActions",
+      "description": "EmptyStateActions part of the empty-state composition."
+    }
+  ],
+  "accessibility": ["native-semantics", "screen-reader-readable"],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Explain what is missing and offer one useful next action when possible."
+    }
+  ]
+}

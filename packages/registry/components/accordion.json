@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "name": "accordion",
+  "files": ["accordion.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["border", "foreground", "muted-foreground", "ring", "radius"],
+  "category": "disclosure",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Single or multiple native details disclosures",
+  "anatomy": [
+    {
+      "name": "Accordion",
+      "description": "Single or multiple open state owner."
+    },
+    {
+      "name": "AccordionItem",
+      "description": "Native details item."
+    },
+    {
+      "name": "AccordionTrigger",
+      "description": "Native summary trigger."
+    },
+    {
+      "name": "AccordionContent",
+      "description": "Revealed content."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "question list",
+      "description": "Use for several related expandable sections with visible trigger text."
+    }
+  ]
+}

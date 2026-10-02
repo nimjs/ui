@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "name": "collapsible",
+  "files": ["collapsible.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["foreground", "muted-foreground", "ring", "radius"],
+  "category": "disclosure",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Native details disclosure with controlled or uncontrolled open state",
+  "anatomy": [
+    {
+      "name": "Collapsible",
+      "description": "Native details element that owns open state."
+    },
+    {
+      "name": "CollapsibleTrigger",
+      "description": "Native summary toggle."
+    },
+    {
+      "name": "CollapsibleContent",
+      "description": "Content revealed while open."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "optional details",
+      "description": "Use for a small optional section without a multi-item accordion."
+    }
+  ]
+}

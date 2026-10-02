@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "name": "radio-group",
+  "files": ["radio-group.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["primary", "ring"],
+  "category": "forms",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Native radio group with controlled or uncontrolled value.",
+  "anatomy": [
+    {
+      "name": "RadioGroup",
+      "description": "Native radio group part."
+    },
+    {
+      "name": "RadioGroupItem",
+      "description": "Native radio group part."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "form control",
+      "description": "Native radio group with controlled or uncontrolled value."
+    }
+  ]
+}

@@ -1,7 +1,26 @@
+import accordionManifestJson from '../components/accordion.json';
+import alertManifestJson from '../components/alert.json';
+import avatarManifestJson from '../components/avatar.json';
 import badgeManifestJson from '../components/badge.json';
+import breadcrumbManifestJson from '../components/breadcrumb.json';
 import buttonManifestJson from '../components/button.json';
 import cardManifestJson from '../components/card.json';
+import checkboxManifestJson from '../components/checkbox.json';
+import collapsibleManifestJson from '../components/collapsible.json';
+import dialogManifestJson from '../components/dialog.json';
+import emptystateManifestJson from '../components/empty-state.json';
+import fieldManifestJson from '../components/field.json';
 import inputManifestJson from '../components/input.json';
+import paginationManifestJson from '../components/pagination.json';
+import progressManifestJson from '../components/progress.json';
+import radioGroupManifestJson from '../components/radio-group.json';
+import selectManifestJson from '../components/select.json';
+import separatorManifestJson from '../components/separator.json';
+import skeletonManifestJson from '../components/skeleton.json';
+import spinnerManifestJson from '../components/spinner.json';
+import switchManifestJson from '../components/switch.json';
+import tabsManifestJson from '../components/tabs.json';
+import textareaManifestJson from '../components/textarea.json';
 
 import {
   registryAccessibilityFeatures,
@@ -252,6 +271,25 @@ export const registryComponents = [
   parseManifest(inputManifestJson),
   parseManifest(cardManifestJson),
   parseManifest(badgeManifestJson),
+  parseManifest(fieldManifestJson),
+  parseManifest(textareaManifestJson),
+  parseManifest(selectManifestJson),
+  parseManifest(radioGroupManifestJson),
+  parseManifest(dialogManifestJson),
+  parseManifest(avatarManifestJson),
+  parseManifest(emptystateManifestJson),
+  parseManifest(collapsibleManifestJson),
+  parseManifest(tabsManifestJson),
+  parseManifest(accordionManifestJson),
+  parseManifest(checkboxManifestJson),
+  parseManifest(switchManifestJson),
+  parseManifest(alertManifestJson),
+  parseManifest(progressManifestJson),
+  parseManifest(separatorManifestJson),
+  parseManifest(skeletonManifestJson),
+  parseManifest(spinnerManifestJson),
+  parseManifest(breadcrumbManifestJson),
+  parseManifest(paginationManifestJson),
 ];
 
 export const registryComponentsByName = Object.fromEntries(

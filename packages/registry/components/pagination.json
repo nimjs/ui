@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "name": "pagination",
+  "files": ["pagination.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["foreground", "muted", "ring", "secondary", "radius"],
+  "category": "navigation",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Semantic pagination links",
+  "anatomy": [
+    {
+      "name": "Pagination",
+      "description": "Pagination part of the pagination component."
+    },
+    {
+      "name": "PaginationList",
+      "description": "PaginationList part of the pagination component."
+    },
+    {
+      "name": "PaginationItem",
+      "description": "PaginationItem part of the pagination component."
+    },
+    {
+      "name": "PaginationLink",
+      "description": "PaginationLink part of the pagination component."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Supply real page URLs and mark the current page."
+    }
+  ]
+}

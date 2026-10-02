@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "name": "dialog",
+  "files": ["dialog.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": [
+    "border",
+    "card",
+    "card-foreground",
+    "foreground",
+    "muted-foreground",
+    "radius"
+  ],
+  "category": "overlays",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Modal dialog built on the browser top layer",
+  "anatomy": [
+    {
+      "name": "Dialog",
+      "description": "Open state owner."
+    },
+    {
+      "name": "DialogTrigger",
+      "description": "Native button that opens the modal."
+    },
+    {
+      "name": "DialogContent",
+      "description": "Native dialog with backdrop and focus handling."
+    },
+    {
+      "name": "DialogTitle",
+      "description": "Accessible title."
+    },
+    {
+      "name": "DialogDescription",
+      "description": "Accessible description."
+    },
+    {
+      "name": "DialogClose",
+      "description": "Native button that closes the modal."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "modal workflow",
+      "description": "Use for a short focused task. Include title and description in the content."
+    }
+  ]
+}

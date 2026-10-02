@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "name": "avatar",
+  "files": ["avatar.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["muted", "foreground"],
+  "category": "display",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Profile image with an initials fallback",
+  "anatomy": [
+    {
+      "name": "Avatar",
+      "description": "Avatar part of the avatar composition."
+    },
+    {
+      "name": "AvatarImage",
+      "description": "AvatarImage part of the avatar composition."
+    },
+    {
+      "name": "AvatarFallback",
+      "description": "AvatarFallback part of the avatar composition."
+    }
+  ],
+  "accessibility": ["native-semantics", "screen-reader-readable"],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Provide meaningful image alt text, or label the root when the image is decorative."
+    }
+  ]
+}

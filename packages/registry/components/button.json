@@ -18,7 +18,7 @@
     "destructive",
     "destructive-foreground"
   ],
-  "category": "ui",
+  "category": "actions",
   "status": "preview",
   "since": "0.0.0",
   "description": "Primary action trigger",

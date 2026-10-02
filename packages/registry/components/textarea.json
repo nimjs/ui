@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "name": "textarea",
+  "files": ["textarea.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": [
+    "background",
+    "foreground",
+    "input",
+    "muted-foreground",
+    "ring",
+    "destructive",
+    "radius"
+  ],
+  "category": "forms",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Native multiline text entry",
+  "anatomy": [
+    {
+      "name": "Textarea",
+      "description": "Textarea part of the textarea component."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Use with Field for a label and supporting text."
+    }
+  ]
+}

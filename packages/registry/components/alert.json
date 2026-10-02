@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "name": "alert",
+  "files": ["alert.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["border", "muted", "foreground", "muted-foreground", "radius"],
+  "category": "feedback",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Status message with title and description",
+  "anatomy": [
+    {
+      "name": "Alert",
+      "description": "Alert part of the alert component."
+    },
+    {
+      "name": "AlertTitle",
+      "description": "AlertTitle part of the alert component."
+    },
+    {
+      "name": "AlertDescription",
+      "description": "AlertDescription part of the alert component."
+    }
+  ],
+  "accessibility": ["native-semantics", "screen-reader-readable"],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Use status for polite updates; set role alert for urgent messages."
+    }
+  ]
+}

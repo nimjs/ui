@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "name": "spinner",
+  "files": ["spinner.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": [],
+  "category": "feedback",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Accessible loading indicator",
+  "anatomy": [
+    {
+      "name": "Spinner",
+      "description": "Spinner part of the spinner component."
+    }
+  ],
+  "accessibility": ["native-semantics", "screen-reader-readable"],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Use a concise label that names the loading task."
+    }
+  ]
+}

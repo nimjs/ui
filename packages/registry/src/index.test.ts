@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
+import { componentNames } from './types';
+
 import {
   getRegistryComponent,
   listRegistryComponents,
@@ -7,8 +9,11 @@ import {
 } from './index';
 
 describe('registry', () => {
-  it('loads all baseline component manifests', () => {
-    expect(listRegistryComponents()).toHaveLength(4);
+  it('loads the declared component manifests', () => {
+    expect(listRegistryComponents()).toHaveLength(componentNames.length);
+    expect(listRegistryComponents().map((component) => component.name)).toEqual(
+      expect.arrayContaining([...componentNames]),
+    );
     expect(getRegistryComponent('button').dependencies).toContain('tokens');
     expect(getRegistryComponent('button').accessibility).toContain(
       'keyboard-accessible',

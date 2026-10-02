@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "name": "progress",
+  "files": ["progress.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["muted", "primary"],
+  "category": "feedback",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Determinate or indeterminate task progress",
+  "anatomy": [
+    {
+      "name": "Progress",
+      "description": "Progress part of the progress component."
+    }
+  ],
+  "accessibility": ["native-semantics", "screen-reader-readable"],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Provide an accessible name; pass value and max for measured progress."
+    }
+  ]
+}

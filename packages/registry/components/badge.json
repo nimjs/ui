@@ -14,9 +14,11 @@
     "accent",
     "accent-foreground",
     "border",
-    "ring"
+    "ring",
+    "destructive",
+    "destructive-foreground"
   ],
-  "category": "ui",
+  "category": "display",
   "status": "preview",
   "since": "0.0.0",
   "description": "Compact status and metadata label",

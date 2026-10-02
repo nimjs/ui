@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "name": "field",
+  "files": ["field.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["foreground", "muted-foreground", "destructive"],
+  "category": "forms",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Composed label, control, help text, and error relationships",
+  "anatomy": [
+    {
+      "name": "Field",
+      "description": "Field part of the field component."
+    },
+    {
+      "name": "FieldLabel",
+      "description": "FieldLabel part of the field component."
+    },
+    {
+      "name": "FieldControl",
+      "description": "FieldControl part of the field component."
+    },
+    {
+      "name": "FieldDescription",
+      "description": "FieldDescription part of the field component."
+    },
+    {
+      "name": "FieldError",
+      "description": "FieldError part of the field component."
+    }
+  ],
+  "accessibility": [
+    "focus-visible",
+    "keyboard-accessible",
+    "native-semantics",
+    "screen-reader-readable"
+  ],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Wrap one control; set description and error when those parts render."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "name": "separator",
+  "files": ["separator.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "npmDependencies": ["clsx", "tailwind-merge"],
+  "tokens": ["border"],
+  "category": "display",
+  "status": "preview",
+  "since": "0.0.0",
+  "description": "Decorative or semantic divider",
+  "anatomy": [
+    {
+      "name": "Separator",
+      "description": "Separator part of the separator component."
+    }
+  ],
+  "accessibility": ["native-semantics", "screen-reader-readable"],
+  "usage": [
+    {
+      "name": "basic use",
+      "description": "Set decorative false when the divider carries meaning."
+    }
+  ]
+}
