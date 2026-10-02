@@ -45,7 +45,7 @@ Registry JSON does not contain component implementation. Website pages are autho
 
 ## Package mode
 
-`@nimjs/ui` exports its root, `button`, `input`, `card`, `badge`, and `styles.css`. Root exports are explicit. `@nimjs/tokens` exports its root and `styles.css`; registry and utils export their roots. `@nimjs/cli` supplies the `ui` executable. ESLint config, TS config, and docs are private workspace packages. React and React DOM `^19.0.0` are UI peers; the documented styling path uses Tailwind CSS 3. No npm publication has been verified. Consumers currently need packed artifacts and the setup in [consumer setup](consumer-setup.md).
+`@nimjs/ui` exports its root, explicit component subpaths listed in its package manifest, and `styles.css`. Root exports are explicit. `@nimjs/tokens` exports its root and `styles.css`; registry and utils export their roots. `@nimjs/cli` supplies the `ui` executable. ESLint config, TS config, and docs are private workspace packages. React and React DOM `^19.0.0` are UI peers; the documented styling path uses Tailwind CSS 3. No npm publication has been verified. Consumers currently need packed artifacts and the setup in [consumer setup](consumer-setup.md).
 
 `@nimjs/ui/styles.css` imports the token stylesheet; consumers may import `@nimjs/tokens/styles.css` directly. Import one token stylesheet once, and configure Tailwind to scan the distributed UI JavaScript and map semantic class names to CSS variables. No compiled component CSS is shipped.
 
@@ -75,11 +75,11 @@ The root requires Node 20.11+ and pins pnpm 9.15.4; only the Node 20 major is se
 
 ## Component acceptance
 
-For an interactive component, review native semantics, keyboard use, focus visibility, disabled behavior, and accessible naming. Use native props and refs where appropriate, SSR-safe rendering, semantic tokens, typed exports, behavior tests, registry metadata, website examples, package and copy consumer checks, and a changeset for a user-facing package change. A presentational component needs an appropriate subset. Existing tests cover Button and Input behavior and registry/CLI helpers; they are not a full accessibility audit.
+For an interactive component, review native semantics, keyboard use, focus visibility, disabled behavior, and accessible naming. Use native props and refs where appropriate, SSR-safe rendering, semantic tokens, typed exports, behavior tests, registry metadata, website examples, package and copy consumer checks, and a changeset for a user-facing package change. A presentational component needs an appropriate subset. Component tests cover key states and interactions; they are not a full accessibility audit.
 
 ## Validation and maintenance
 
-`pnpm verify` runs workspace gates, registry validation, packed consumer checks, and a `/ui/` Pages export; CI calls the same command. `pnpm verify:consumer` packs all five public artifacts, checks their declared export and bin files, then installs into two temporary projects outside the workspace. Package and copy mode typecheck, render on the server, and build with Vite for all four current components; rendered markup is compared. It does not validate browser interaction or other frameworks. The Pages workflow deploys a static export. The release script has a preflight and Changesets publish step, but automated publication is disabled. Details and first release checks are in [releases](releases.md).
+`pnpm verify` runs workspace gates, registry validation, packed consumer checks, and a `/ui/` Pages export; CI calls the same command. `pnpm verify:consumer` packs all five public artifacts, checks their declared export and bin files, then installs into two temporary projects outside the workspace. Package and copy mode typecheck, render on the server, and build with Vite for the current catalog; rendered markup is compared. It does not validate browser interaction or other frameworks. The Pages workflow deploys a static export. The release script has a preflight and Changesets publish step, but automated publication is disabled. Details and first release checks are in [releases](releases.md).
 
 Security boundaries are CLI filesystem writes, executable local config, generated source that consumers own, npm dependencies selected by consumers, GitHub Actions permissions, and release credentials. The current CLI neither downloads nor executes registry code. Vulnerabilities use the private route in [Security](../SECURITY.md).
 

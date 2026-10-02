@@ -1,6 +1,6 @@
 # Consumer setup
 
-The repository also provides `pnpm verify:consumer`, which builds, packs, and tests Button in temporary package-mode and copy-mode projects outside the workspace.
+The repository also provides `pnpm verify:consumer`, which builds, packs, and tests every registered component in temporary package-mode and copy-mode projects outside the workspace.
 
 These are **local artifact** instructions for an external React 19 application using Tailwind CSS 3. NimJS UI has no public npm release yet. The examples assume an existing pnpm project with React, React DOM, TypeScript, PostCSS, and Tailwind 3 configured. The exact framework bootstrap is the application's choice; the setup below describes the NimJS-specific contract. Run application commands from the external project's root, outside this workspace.
 
@@ -52,7 +52,7 @@ pnpm add /tmp/nimjs-packs/nimjs-ui-0.0.0.tgz /tmp/nimjs-packs/nimjs-tokens-0.0.0
 @tailwind utilities;
 ```
 
-Add the UI distribution to Tailwind's `content` scan. The components ship class names, not compiled component CSS. Use the semantic mapping below. It covers the classes currently used by the four components; compare with `apps/docs/tailwind.config.ts` when adding new tokens.
+Add the UI distribution to Tailwind's `content` scan. The components ship class names, not compiled component CSS. Use the semantic mapping below. It covers the current catalog; compare with `apps/docs/tailwind.config.ts` when adding new tokens.
 
 ```ts
 // tailwind.config.ts, merge into an existing Tailwind 3 config
@@ -137,4 +137,4 @@ The copied source belongs to the application. Upgrading `@nimjs/cli` or `@nimjs/
 - **Package not found during local test:** check the `/tmp/nimjs-packs` tarballs and `pnpm.overrides` entries, then reinstall.
 - **Missing type or module:** use only explicit package exports and rebuild/repack after source changes.
 
-The registry currently reports npm dependency names without version ranges; the command above uses the ranges declared by the corresponding workspace packages. The CLI does not create a framework app, install npm dependencies, edit Tailwind or PostCSS configuration, or add a CSS import. It rejects component-to-component dependencies until copying them is implemented. The package path has no public npm install command yet. Dark theme behavior and other framework/Tailwind versions are unverified. `pnpm verify:consumer` checks all four current components in external Vite fixtures; it does not test browser interactions.
+The registry currently reports npm dependency names without version ranges; the command above uses the ranges declared by the corresponding workspace packages. The CLI does not create a framework app, install npm dependencies, edit Tailwind or PostCSS configuration, or add a CSS import. It rejects component-to-component dependencies until copying them is implemented. The package path has no public npm install command yet. Dark theme behavior and other framework/Tailwind versions are unverified. `pnpm verify:consumer` checks every registered component in external Vite fixtures; it does not test browser interactions.

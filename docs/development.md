@@ -15,15 +15,15 @@ For repository setup and pull request policy, start with [Contributing](../CONTR
 
 ## Validation layers
 
-| Gate                   | What it catches                                                                         |
-| ---------------------- | --------------------------------------------------------------------------------------- |
-| `pnpm lint`            | Static code issues                                                                      |
-| `pnpm typecheck`       | Type and docs route generation failures                                                 |
-| `pnpm test`            | Unit, component, registry, and CLI behavior already covered by tests                    |
-| `pnpm build`           | Package artifacts and Next.js docs build                                                |
-| `pnpm verify:registry` | Manifest schema, canonical source paths, token references, and public exports           |
-| `pnpm verify:consumer` | Packed files, exports, CSS, types, CLI, Vite builds, and SSR parity for four components |
-| `pnpm verify`          | All rows above plus the `/ui/` GitHub Pages static export                               |
+| Gate                   | What it catches                                                                               |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| `pnpm lint`            | Static code issues                                                                            |
+| `pnpm typecheck`       | Type and docs route generation failures                                                       |
+| `pnpm test`            | Unit, component, registry, and CLI behavior already covered by tests                          |
+| `pnpm build`           | Package artifacts and Next.js docs build                                                      |
+| `pnpm verify:registry` | Manifest schema, canonical source paths, token references, and public exports                 |
+| `pnpm verify:consumer` | Packed files, exports, CSS, types, CLI, Vite builds, and SSR parity for the component catalog |
+| `pnpm verify`          | All rows above plus the `/ui/` GitHub Pages static export                                     |
 
 The docs app currently has no behavioral tests; its build is the automated route gate. The external consumer gate uses temporary projects and tarballs, but it does not prove browser interaction or support for other frameworks.
 

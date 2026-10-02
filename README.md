@@ -2,7 +2,7 @@
 
 NimJS UI is an early-stage React component library with design tokens, a local component registry, a source-copying CLI, and a documentation app. It supports two intended ways to use a component: import a package, or copy its source into an application. The same files in `packages/ui/src/components` define component behavior for both paths.
 
-**Current status:** The repository has Button, Input, Card, and Badge, a light theme, package builds, and a local CLI. The registry marks these components **preview**. The `@nimjs/*` packages are not publicly released; external use currently requires packed artifacts. Copy mode still needs manual npm dependency installation, stylesheet import, and Tailwind configuration. A dark selector exists in CSS, but dark theme behavior has not passed a consumer validation gate.
+**Current status:** The repository has a preview catalog of form, navigation, feedback, and display primitives, a light theme, package builds, and a local CLI. The registry marks these components **preview**. The `@nimjs/*` packages are not publicly released; external use currently requires packed artifacts. Copy mode still needs manual npm dependency installation, stylesheet import, and Tailwind configuration. A dark selector exists in CSS, but dark theme behavior has not passed a consumer validation gate.
 
 [Documentation map](docs/README.md) · [Component pages](https://nimjs.github.io/ui/components/) · [Consumer setup](docs/consumer-setup.md) · [Roadmap](docs/roadmap.md) · [Contributing](CONTRIBUTING.md)
 
@@ -24,7 +24,7 @@ pnpm install
 pnpm dev
 ```
 
-`pnpm dev` starts the Next.js docs app. Run `pnpm verify` before a PR. It runs lint, typecheck, tests, package and docs builds, registry validation, packed external consumer checks for all four components, and the `/ui/` Pages export. The consumer check installs tarballs into temporary projects outside this workspace.
+`pnpm dev` starts the Next.js docs app. Run `pnpm verify` before a PR. It runs lint, typecheck, tests, package and docs builds, registry validation, packed external consumer checks for the component catalog, and the `/ui/` Pages export. The consumer check installs tarballs into temporary projects outside this workspace.
 
 ## Packages and architecture
 

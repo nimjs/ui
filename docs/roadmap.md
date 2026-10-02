@@ -4,7 +4,7 @@ This file tracks intended outcomes, not shipped capability. Current behavior and
 
 ## External consumer baseline
 
-- Keep package and copy mode working in clean React 19 / Tailwind 3 Vite projects outside the workspace, using packed artifacts. The current gate covers Button, Input, Card, and Badge.
+- Keep package and copy mode working in clean React 19 / Tailwind 3 Vite projects outside the workspace, using packed artifacts. The current gate covers every registered component.
 - Add other frameworks or setup variants only when they become supported targets. Browser interaction parity remains to be validated beyond current component unit tests and server-rendered markup checks.
 - Reconcile any gaps between canonical source, registry metadata, CLI assets, and website examples.
 

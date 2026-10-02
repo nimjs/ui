@@ -2,7 +2,7 @@
 
 Preview React components for NimJS UI. The package is not publicly released yet; use the [packed artifact setup](https://github.com/nimjs/ui/blob/main/docs/consumer-setup.md) for external evaluation.
 
-Public entry points: package root, `/button`, `/input`, `/card`, `/badge`, and `/styles.css`. The root exports `Button`, `Input`, `Card` parts, `Badge`, variants, and component prop types. Import only declared subpaths.
+Public entry points: package root, explicit component subpaths listed in `package.json`, and `/styles.css`. The root exports the registered component families and their documented parts and prop types. Import only declared subpaths.
 
 ```tsx
 import { Button } from '@nimjs/ui';
