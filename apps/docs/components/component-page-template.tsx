@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 import { CodeBlock } from './code-block';
@@ -69,6 +70,26 @@ export function ComponentPageTemplate({ page }: { page: ComponentPage }) {
         <div className="component-preview-surface">
           <ComponentPreview preview={page.preview} />
         </div>
+      </section>
+
+      <section className="doc-section">
+        <h2>Installation</h2>
+        <p className="doc-paragraph">
+          Packages are unreleased. Follow the packed artifact setup for package
+          mode, or run the local CLI in copy mode and complete the reported npm,
+          token CSS, and Tailwind setup.
+        </p>
+        <CodeBlock
+          code={`pnpm exec ui add ${manifest.name}`}
+          label={`Copy ${page.title}`}
+          language="bash"
+        />
+        <Link
+          className="text-primary underline underline-offset-4"
+          href="/docs/installation"
+        >
+          Full installation guide
+        </Link>
       </section>
 
       <section className="doc-section">
