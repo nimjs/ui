@@ -46,4 +46,23 @@ describe('Button', () => {
     fireEvent.click(button);
     expect(presses).toBe(1);
   });
+
+  it('keeps its accessible name and blocks activation while loading', () => {
+    let presses = 0;
+    render(
+      <Button
+        loading
+        onClick={() => {
+          presses += 1;
+        }}
+      >
+        Save
+      </Button>,
+    );
+    const button = screen.getByRole('button', { name: 'Save' });
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('aria-busy', 'true');
+    fireEvent.click(button);
+    expect(presses).toBe(0);
+  });
 });
