@@ -49,15 +49,110 @@
       "import": "./dist/components/badge/index.mjs",
       "require": "./dist/components/badge/index.js"
     },
-    "./styles.css": "./src/styles/index.css"
+    "./styles.css": "./src/styles/index.css",
+    "./field": {
+      "types": "./dist/components/field/index.d.ts",
+      "import": "./dist/components/field/index.mjs",
+      "require": "./dist/components/field/index.js"
+    },
+    "./textarea": {
+      "types": "./dist/components/textarea/index.d.ts",
+      "import": "./dist/components/textarea/index.mjs",
+      "require": "./dist/components/textarea/index.js"
+    },
+    "./checkbox": {
+      "types": "./dist/components/checkbox/index.d.ts",
+      "import": "./dist/components/checkbox/index.mjs",
+      "require": "./dist/components/checkbox/index.js"
+    },
+    "./switch": {
+      "types": "./dist/components/switch/index.d.ts",
+      "import": "./dist/components/switch/index.mjs",
+      "require": "./dist/components/switch/index.js"
+    },
+    "./alert": {
+      "types": "./dist/components/alert/index.d.ts",
+      "import": "./dist/components/alert/index.mjs",
+      "require": "./dist/components/alert/index.js"
+    },
+    "./progress": {
+      "types": "./dist/components/progress/index.d.ts",
+      "import": "./dist/components/progress/index.mjs",
+      "require": "./dist/components/progress/index.js"
+    },
+    "./separator": {
+      "types": "./dist/components/separator/index.d.ts",
+      "import": "./dist/components/separator/index.mjs",
+      "require": "./dist/components/separator/index.js"
+    },
+    "./skeleton": {
+      "types": "./dist/components/skeleton/index.d.ts",
+      "import": "./dist/components/skeleton/index.mjs",
+      "require": "./dist/components/skeleton/index.js"
+    },
+    "./spinner": {
+      "types": "./dist/components/spinner/index.d.ts",
+      "import": "./dist/components/spinner/index.mjs",
+      "require": "./dist/components/spinner/index.js"
+    },
+    "./breadcrumb": {
+      "types": "./dist/components/breadcrumb/index.d.ts",
+      "import": "./dist/components/breadcrumb/index.mjs",
+      "require": "./dist/components/breadcrumb/index.js"
+    },
+    "./pagination": {
+      "types": "./dist/components/pagination/index.d.ts",
+      "import": "./dist/components/pagination/index.mjs",
+      "require": "./dist/components/pagination/index.js"
+    },
+    "./select": {
+      "types": "./dist/components/select/index.d.ts",
+      "import": "./dist/components/select/index.mjs",
+      "require": "./dist/components/select/index.js"
+    },
+    "./radio-group": {
+      "types": "./dist/components/radio-group/index.d.ts",
+      "import": "./dist/components/radio-group/index.mjs",
+      "require": "./dist/components/radio-group/index.js"
+    },
+    "./dialog": {
+      "types": "./dist/components/dialog/index.d.ts",
+      "import": "./dist/components/dialog/index.mjs",
+      "require": "./dist/components/dialog/index.js"
+    },
+    "./avatar": {
+      "types": "./dist/components/avatar/index.d.ts",
+      "import": "./dist/components/avatar/index.mjs",
+      "require": "./dist/components/avatar/index.js"
+    },
+    "./empty-state": {
+      "types": "./dist/components/empty-state/index.d.ts",
+      "import": "./dist/components/empty-state/index.mjs",
+      "require": "./dist/components/empty-state/index.js"
+    },
+    "./collapsible": {
+      "types": "./dist/components/collapsible/index.d.ts",
+      "import": "./dist/components/collapsible/index.mjs",
+      "require": "./dist/components/collapsible/index.js"
+    },
+    "./tabs": {
+      "types": "./dist/components/tabs/index.d.ts",
+      "import": "./dist/components/tabs/index.mjs",
+      "require": "./dist/components/tabs/index.js"
+    },
+    "./accordion": {
+      "types": "./dist/components/accordion/index.d.ts",
+      "import": "./dist/components/accordion/index.mjs",
+      "require": "./dist/components/accordion/index.js"
+    }
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts src/components/button/index.ts src/components/input/index.ts src/components/card/index.ts src/components/badge/index.ts --dts --format esm,cjs --clean --external react,react-dom",
+    "build": "NODE_OPTIONS=--max-old-space-size=4096 tsup src/index.ts src/components/button/index.ts src/components/input/index.ts src/components/card/index.ts src/components/badge/index.ts src/components/field/index.ts src/components/textarea/index.ts src/components/checkbox/index.ts src/components/switch/index.ts src/components/alert/index.ts src/components/progress/index.ts src/components/separator/index.ts src/components/skeleton/index.ts src/components/spinner/index.ts src/components/breadcrumb/index.ts src/components/pagination/index.ts src/components/select/index.ts src/components/radio-group/index.ts src/components/dialog/index.ts src/components/avatar/index.ts src/components/empty-state/index.ts src/components/collapsible/index.ts src/components/tabs/index.ts src/components/accordion/index.ts --dts --format esm,cjs --clean --external react,react-dom",
     "clean": "rm -rf dist coverage",
-    "dev": "tsup src/index.ts src/components/button/index.ts src/components/input/index.ts src/components/card/index.ts src/components/badge/index.ts --dts --format esm,cjs --watch --external react,react-dom",
+    "dev": "NODE_OPTIONS=--max-old-space-size=4096 tsup src/index.ts src/components/button/index.ts src/components/input/index.ts src/components/card/index.ts src/components/badge/index.ts src/components/field/index.ts src/components/textarea/index.ts src/components/checkbox/index.ts src/components/switch/index.ts src/components/alert/index.ts src/components/progress/index.ts src/components/separator/index.ts src/components/skeleton/index.ts src/components/spinner/index.ts src/components/breadcrumb/index.ts src/components/pagination/index.ts src/components/select/index.ts src/components/radio-group/index.ts src/components/dialog/index.ts src/components/avatar/index.ts src/components/empty-state/index.ts src/components/collapsible/index.ts src/components/tabs/index.ts src/components/accordion/index.ts --dts --format esm,cjs --watch --external react,react-dom",
     "lint": "eslint src --ext .ts,.tsx",
     "test": "vitest run",
     "typecheck": "tsc --project tsconfig.json --noEmit"
