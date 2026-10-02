@@ -11,12 +11,12 @@ export const inputPage = createComponentPage(meta, {
   slug: 'input',
   eyebrow: 'Component',
   preview: 'input',
-  code: `import { Input } from '@nimjs/ui';\n\nexport function Example() {\n  return <Input placeholder="team@example.com" type="email" />;\n}`,
+  code: `import { Field, FieldControl, FieldDescription, FieldLabel, Input } from '@nimjs/ui';\n\nexport function Example() {\n  return <Field description><FieldLabel>Email</FieldLabel><FieldControl><Input type="email" /></FieldControl><FieldDescription>Use your work address.</FieldDescription></Field>;\n}`,
   sections: [
     {
       title: 'Guidance',
       paragraphs: [
-        'Prefer pairing inputs with explicit labels in app code. The component intentionally avoids wrapping field abstractions so teams can compose their preferred form patterns without fighting the base library.',
+        'Pair Input with a visible label or compose it inside Field for description and error IDs. Use invalid for visual error styling and native required or disabled for form behavior.',
       ],
     },
   ],
