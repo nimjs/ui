@@ -28,4 +28,4 @@ This file tracks intended outcomes, not shipped capability. Current behavior and
 
 ## Later candidates
 
-Remote registries, additional framework adapters, broader component patterns, and release automation need a separate design decision after the local paths work. They are not current CLI capabilities.
+AlertDialog, Popover, Tooltip, and DropdownMenu need a vetted headless interaction foundation and browser review before implementation. Combobox and Data Table follow after those foundations. Remote registries, additional framework adapters, broader component patterns, and release automation need a separate design decision after the local paths work. They are not current CLI capabilities.

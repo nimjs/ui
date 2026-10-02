@@ -63,6 +63,10 @@ Manifests live in `packages/registry/components/*.json`, use `schemaVersion: 1`,
 
 The status vocabulary in code is `experimental`, `preview`, and `stable`. Current components are `preview`; this reflects incomplete external validation, not a claim that they have no usable behavior. Promotion to `stable` requires the acceptance gate below. There is no `deprecated` registry status today; deprecation must be documented in API docs and release notes until a schema decision adds one.
 
+## Interaction primitives
+
+Native controls provide the form behavior in the current catalog: checkbox, radio, switch, and select use browser inputs, and Dialog uses the native modal top layer. Collapsible and Accordion use `details`/`summary`; Tabs implements its tablist keyboard behavior in canonical UI source. This keeps the same behavior in package and copy mode without adding a runtime primitive dependency. AlertDialog, Popover, Tooltip, and DropdownMenu need a reviewed focus, positioning, and keyboard foundation before they become public components. A candidate dependency must be assessed for maintenance, license, bundle size, accessibility behavior, and copy-mode npm requirements.
+
 ## Tokens and themes
 
 TypeScript primitives and light theme mappings live in `packages/tokens/src/`; `src/css/variables.css` is the stylesheet used by apps and copied installations. Primitive colors feed semantic variables such as `--background`, `--foreground`, `--primary`, `--primary-foreground`, `--border`, and `--ring`. Components use semantic Tailwind keys and radius variables. A missing stylesheet or missing Tailwind mapping leaves component styling incomplete. The CSS includes a `[data-theme='dark']` selector, but dark behavior is not yet a validated consumer contract. A new token should have a clear role, be mapped in CSS and Tailwind examples where needed, and be reflected in registry metadata and docs. Existing primitive names remain exported; removal is an API decision.
